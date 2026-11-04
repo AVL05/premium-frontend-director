@@ -1,0 +1,9 @@
+{
+  "name": "premium-frontend-director",
+  "version": "1.0.0",
+  "description": "Art-directed, accessible, browser-reviewed premium frontend development.",
+  "author": {
+    "name": "AVL05"
+  },
+  "license": "MIT"
+}
