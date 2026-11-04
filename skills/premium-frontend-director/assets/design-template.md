@@ -48,3 +48,17 @@
 - Engineering checks:
 - Performance budget / evidence:
 - Unverified assumptions:
+
+## Creative ambition and prototype evidence
+
+- **Skill profile (tools):** Core / Premium / Studio
+- **Creative ambition (design):** Refined / Expressive / Immersive
+- **Requested perceptible change:**
+- **Before baseline (route/viewport/state/screenshot):**
+- **Proposed first-frame spatial composition:**
+- **Signature interaction and observed evidence (video/frames/steps):**
+- **POC prototype reviewed in real browser:** PASS / FAIL / NOT RUN
+- **G11 Visual Ambition:** PASS / FAIL / NOT RUN, with qualitative rationale
+- **Static, reduced-motion, no-WebGL and mobile fallback:**
+- **Performance/accessibility trade-offs measured or NOT RUN:**
+- **Proceed with other routes?** yes / revise / blocked
