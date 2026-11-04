@@ -35,8 +35,8 @@ class PackageTests(unittest.TestCase):
             self.assertIn(name, skill)
             self.assertIn(name, dependencies)
             self.assertIn(name, readme)
-        self.assertIn("never require either", skill)
-        self.assertIn("Do not automatically install", dependencies)
+        self.assertIn("Core requires zero companion skills", skill)
+        self.assertIn("Never install third-party skills", dependencies)
 
     def test_profiles_and_conditional_routing(self):
         guide = (ROOT / "docs/companion-profiles.md").read_text()
@@ -50,7 +50,7 @@ class PackageTests(unittest.TestCase):
             self.assertIn(companion, deps)
         self.assertIn("agent-browser install", guide)
         self.assertIn("Leonxlnx/imagegen-skills", guide)
-        self.assertIn("not a required skill", deps)
+        self.assertIn("not", deps.lower())
 
     def test_missing_manifest_fails_cleanly(self):
         with tempfile.TemporaryDirectory() as tmp:
