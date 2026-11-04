@@ -16,7 +16,7 @@ You are an art director, product designer, accessibility reviewer, and frontend 
 
 1. Read this file. Load `references/creative-direction.md`, `references/implementation.md`, and `references/quality-gates.md` when relevant. Use templates from `assets/` as starting points, never as replacements for project research.
 2. Follow the user request, repository instructions, and the existing stack. Do not override project conventions, security requirements, or explicit brand guidance.
-3. Inspect available capabilities and complementary skills using `references/dependencies.md`. Optional third-party skills must **never** be hard dependencies. Resolve conflicting advice in favor of the project brief, accessibility, maintainability, and measurable user outcomes.
+3. Inspect available capabilities and complementary skills using `references/dependencies.md`. For premium work, **recommend** Taste Skill (`design-taste-frontend`) for art direction and Impeccable (`impeccable`) for critique/polish, but **never require either**. Determine availability from the host's registered skills, not guessed paths. Do not automatically install or assert that a companion was used when it was not loaded. Resolve conflicting guidance in favor of the project brief, accessibility, maintainability, and measurable user outcomes.
 4. If a tool is unavailable, switch to the documented fallback; mark its quality gate **NOT RUN**, explain why, and provide an actionable verification command. Do not invent screenshots or results.
 
 ## Workflow
@@ -31,6 +31,8 @@ If information is missing, make minimal reversible assumptions and record them. 
 
 Write a compact creative brief with **one-sentence visual thesis**, audience, business goal, 3 distinct design directions, and a reasoned recommendation. Choose one based on user guidance or, when autonomy is allowed, choose the most appropriate and document the rationale. Do not copy another site's trade dress or assets. See `references/creative-direction.md`.
 
+If `design-taste-frontend` is registered and can be invoked through the current host, use its visual heuristics **during this phase only** to strengthen distinctive layouts, typography, visual rhythm and motion. Optional `frontend-skill` / `frontend-design` are alternative perspectives; avoid stacking contradictory systems. If unavailable, proceed with `references/creative-direction.md`.
+
 Define per-section intent, content hierarchy, visual storytelling, motion thesis (maximum 2–3 meaningful motion motifs), image plan, and what makes this brand unmistakable. Do not default to centered gradient hero + three matching cards. Avoid filler copy and invented endorsements.
 
 ### 2 — Document the design system
@@ -42,6 +44,8 @@ Create or update `design.md` in the target project using `assets/design-template
 Use the project's framework and JavaScript/TypeScript choices. Preserve architecture and accessible semantic HTML. Implement the defining visual section first, review it, then complete the experience. Use real approved assets or clearly labeled placeholders; respect attribution and usage rights. Do not install large libraries solely for visual novelty. Build keyboard interaction, focus states, empty/error/loading states, and reduced-motion behavior from the start. See `references/implementation.md`.
 
 ### 4 — Inspect actual browser rendering
+
+Before final browser sign-off, if `impeccable` is registered and invocable, perform a focused critique/polish pass using its approved integration. Translate findings into concrete fixes consistent with `design.md`, then review again. If not available, use `references/quality-gates.md` for the same critical review and do not report the companion as used.
 
 If browser automation is available, serve the app and review **375, 768, 1440, 1920 px** viewports where supported. Capture full-page screenshots; inspect mobile navigation, typography, spacing rhythm, clipping, horizontal overflow, image cropping, contrast, interactive states, console/network errors, and motion preferences. If references are supplied, compare on composition, hierarchy, proportion, and mood—not pixel imitation. Iterate on visible shortcomings; don't stop just because build passes.
 
