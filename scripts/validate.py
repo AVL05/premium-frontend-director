@@ -30,6 +30,7 @@ def validate():
         problems.append("SKILL.md must be shorter than 500 lines")
     files = ["references/creative-direction.md", "references/implementation.md",
              "references/quality-gates.md", "references/dependencies.md",
+             "references/ambition-modes.md", "references/immersive-design.md",
              "assets/design-template.md", "scripts/visual-audit.mjs"]
     for relative in files:
         if not (SKILL.parent / relative).is_file():
