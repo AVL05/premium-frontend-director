@@ -12,6 +12,20 @@ La skill **Premium Frontend Director** funciona en Codex y Claude Code. Sirve pa
 
 **Importante:** Studio *no* significa instalar absolutamente todas las skills disponibles. Elige las que correspondan a tu stack y al objetivo. No se gana calidad por cantidad. Todos los complementos son opcionales.
 
+## Elige también el nivel de ambición creativa
+
+**No es lo mismo que el perfil de skills.** `Core / Premium / Studio` selecciona herramientas; `Refined / Expressive / Immersive` define el nivel de transformación artística.
+
+| Ambición | Qué significa |
+| --- | --- |
+| **Refined** | Pulido editorial, legibilidad y composición controlada |
+| **Expressive** | Cambio estructural reconocible e interacción original |
+| **Immersive** | Escena o experiencia cinematográfica con profundidad y transición distintiva; WebGL solo si aporta valor |
+
+Para un archivo fotográfico experimental, prueba **Premium + Immersive**. El agente **debe implementar y revisar primero un prototipo real** de la portada y una transición; comparar antes/después en el mismo viewport y pasar **G11 Visual Ambition**. Si solo cambió márgenes, colores o fuentes ante una petición radical, **G11 FAIL**, aunque los tests técnicos estén verdes. También debe construir un fallback de reducción de movimiento, sin WebGL y compatible con móvil.
+
+**Ejemplo de prompt:** «Usa premium-frontend-director con perfil Premium y ambición Immersive. Quiero un rediseño estructural, no un retoque de tipografía. Antes de cambiar todas las rutas, implementa una portada inmersiva funcional, compara capturas a 375 y 1440 px y verifica la interacción. Si G11 falla, itera antes de continuar. Conserva accesibilidad, contratos y rendimiento».
+
 ## 2. Qué necesitas antes de instalar
 
 - **Codex o Claude Code** actualizado, con soporte de Agent Skills.
