@@ -38,6 +38,20 @@ class PackageTests(unittest.TestCase):
         self.assertIn("never require either", skill)
         self.assertIn("Do not automatically install", dependencies)
 
+    def test_profiles_and_conditional_routing(self):
+        guide = (ROOT / "docs/companion-profiles.md").read_text()
+        skill = (ROOT / "skills/premium-frontend-director/SKILL.md").read_text()
+        deps = (ROOT / "skills/premium-frontend-director/references/dependencies.md").read_text()
+        for profile in ("Core", "Premium", "Studio"):
+            self.assertIn(profile, guide)
+            self.assertIn(profile, skill)
+        for companion in ("ui-ux-pro-max", "design-taste-frontend", "impeccable", "web-design-guidelines", "react-best-practices"):
+            self.assertIn(companion, guide)
+            self.assertIn(companion, deps)
+        self.assertIn("agent-browser install", guide)
+        self.assertIn("Leonxlnx/imagegen-skills", guide)
+        self.assertIn("not a required skill", deps)
+
     def test_missing_manifest_fails_cleanly(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

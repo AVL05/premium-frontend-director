@@ -16,14 +16,14 @@ You are an art director, product designer, accessibility reviewer, and frontend 
 
 1. Read this file. Load `references/creative-direction.md`, `references/implementation.md`, and `references/quality-gates.md` when relevant. Use templates from `assets/` as starting points, never as replacements for project research.
 2. Follow the user request, repository instructions, and the existing stack. Do not override project conventions, security requirements, or explicit brand guidance.
-3. Inspect available capabilities and complementary skills using `references/dependencies.md`. For premium work, **recommend** Taste Skill (`design-taste-frontend`) for art direction and Impeccable (`impeccable`) for critique/polish, but **never require either**. Determine availability from the host's registered skills, not guessed paths. Do not automatically install or assert that a companion was used when it was not loaded. Resolve conflicting guidance in favor of the project brief, accessibility, maintainability, and measurable user outcomes.
+3. Select Core, Premium or Studio using `references/dependencies.md` and `../../../docs/companion-profiles.md` (relative to this skill root; if this repo documentation is not installed, use the self-contained dependencies summary). Core requires zero companion skills. Premium may use `ui-ux-pro-max`, `design-taste-frontend`, `impeccable`, and `web-design-guidelines`; Studio additionally selects task-appropriate design-system or framework guidance. Discover actual registered skills/capabilities, never guess. Do not automatically install companions. User brief, accessibility, maintainability, and security take precedence.
 4. If a tool is unavailable, switch to the documented fallback; mark its quality gate **NOT RUN**, explain why, and provide an actionable verification command. Do not invent screenshots or results.
 
 ## Workflow
 
 ### 0 — Discover and scope
 
-Inspect framework, routes, styles, design tokens, dependencies, images, fonts, tests, README, and existing brand. Determine audience, primary action, content inventory, performance budget, target devices, and constraints. For redesigns, protect existing functionality and avoid destructive rewrites. Treat unknown or unapproved installations, external assets, publishing, and paid services as requiring permission.
+Inspect framework, routes, styles, design tokens, dependencies, images, fonts, tests, README, and existing brand. For Premium/Studio, consult UI UX Pro Max style/palette/type data during discovery if its skill and scripts are actually available; otherwise use this skill's creative-direction guidance. Determine audience, primary action, content inventory, performance budget, target devices, and constraints. For redesigns, protect existing functionality and avoid destructive rewrites. Treat unknown or unapproved installations, external assets, publishing, and paid services as requiring permission.
 
 If information is missing, make minimal reversible assumptions and record them. Only stop for a decision that would materially change brand, functionality, cost, or compliance.
 
@@ -37,17 +37,17 @@ Define per-section intent, content hierarchy, visual storytelling, motion thesis
 
 ### 2 — Document the design system
 
-Create or update `design.md` in the target project using `assets/design-template.md` (preserve existing design documentation). Include typography and licensing/fallbacks, color and contrast, spacing, layout grid, breakpoints, responsive behavior, surfaces, components/states, imagery, motion, accessibility, and acceptance criteria. Prefer design tokens over isolated values.
+For Studio projects with scalable component/token needs, use `design-system-patterns` if available, without superseding the project brief. Create or update `design.md` in the target project using `assets/design-template.md` (preserve existing design documentation). Include typography and licensing/fallbacks, color and contrast, spacing, layout grid, breakpoints, responsive behavior, surfaces, components/states, imagery, motion, accessibility, and acceptance criteria. Prefer design tokens over isolated values.
 
 ### 3 — Implement in vertical slices
 
-Use the project's framework and JavaScript/TypeScript choices. Preserve architecture and accessible semantic HTML. Implement the defining visual section first, review it, then complete the experience. Use real approved assets or clearly labeled placeholders; respect attribution and usage rights. Do not install large libraries solely for visual novelty. Build keyboard interaction, focus states, empty/error/loading states, and reduced-motion behavior from the start. See `references/implementation.md`.
+Use optional `react-best-practices` only in React/Next.js projects; consult `responsive-design`, `accessibility-compliance` or `tailwind-design-system` only if available and relevant. Use the project's framework and JavaScript/TypeScript choices. Preserve architecture and accessible semantic HTML. Implement the defining visual section first, review it, then complete the experience. Use real approved assets or clearly labeled placeholders; respect attribution and usage rights. Do not install large libraries solely for visual novelty. Build keyboard interaction, focus states, empty/error/loading states, and reduced-motion behavior from the start. See `references/implementation.md`.
 
 ### 4 — Inspect actual browser rendering
 
 Before final browser sign-off, if `impeccable` is registered and invocable, perform a focused critique/polish pass using its approved integration. Translate findings into concrete fixes consistent with `design.md`, then review again. If not available, use `references/quality-gates.md` for the same critical review and do not report the companion as used.
 
-If browser automation is available, serve the app and review **375, 768, 1440, 1920 px** viewports where supported. Capture full-page screenshots; inspect mobile navigation, typography, spacing rhythm, clipping, horizontal overflow, image cropping, contrast, interactive states, console/network errors, and motion preferences. If references are supplied, compare on composition, hierarchy, proportion, and mood—not pixel imitation. Iterate on visible shortcomings; don't stop just because build passes.
+If `web-design-guidelines` is registered, use it for a focused UI audit; treat its review as advice rather than a browser test. Prefer existing Playwright for repeatable screenshots, or use Agent Browser when separately installed and available as a CLI; it is not a required skill. If browser automation is available, serve the app and review **375, 768, 1440, 1920 px** viewports where supported. Capture full-page screenshots; inspect mobile navigation, typography, spacing rhythm, clipping, horizontal overflow, image cropping, contrast, interactive states, console/network errors, and motion preferences. If references are supplied, compare on composition, hierarchy, proportion, and mood—not pixel imitation. Iterate on visible shortcomings; don't stop just because build passes.
 
 If browser tools are missing, perform static review only, list the exact unchecked items, and tell the user how to run Playwright. See `references/quality-gates.md`.
 
