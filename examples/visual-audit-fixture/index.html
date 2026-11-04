@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Studio Meridian — Design Test Fixture</title>
+<link rel="icon" href="data:,">
+<style>
+:root{color-scheme:light;--ink:#1e292c;--paper:#f4f2eb;--accent:#c85739}
+*{box-sizing:border-box}html{font-family:system-ui,sans-serif}body{margin:0;background:var(--paper);color:var(--ink)}
+a{color:inherit}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+.wrapper{max-width:1240px;margin:auto;padding:28px clamp(20px,5vw,64px)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.logo{font-weight:800;letter-spacing:-.07em;font-size:24px}nav a{font-size:14px}
+.hero{padding:clamp(64px,12vw,170px) 0 110px;max-width:970px}
+.eyebrow{text-transform:uppercase;letter-spacing:.21em;font-size:12px;font-weight:700}
+h1{font-size:clamp(54px,10vw,142px);line-height:.94;letter-spacing:-.09em;font-weight:600;margin:22px 0 34px}
+.hero p{max-width:540px;font-size:clamp(18px,2vw,24px);line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;padding-bottom:100px}
+.tile{min-width:0;aspect-ratio:4/3;display:flex;align-items:end;padding:30px;background:#d9dbd5}
+.tile:last-child{background:#e5cdbb}.tile span{font-size:clamp(24px,4vw,50px);letter-spacing:-.06em}
+footer{border-top:1px solid #c1c7bf;padding:28px 0;font-size:14px}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.hero{padding:72px 0}.tile{aspect-ratio:5/4}}
+@media(prefers-reduced-motion:no-preference){a{transition:opacity .2s}a:hover{opacity:.6}}
+</style></head><body>
+<header class="wrapper"><nav aria-label="Main navigation"><span class="logo">meridian.</span><a href="#work">Selected work</a><a href="mailto:hello@example.com">Contact</a></nav></header>
+<main class="wrapper"><section class="hero"><span class="eyebrow">Independent creative studio / Sample fixture</span><h1>Make space<br>for ideas.</h1><p>We shape thoughtful digital experiences where a clear vision meets considered craft.</p></section>
+<section id="work" aria-label="Selected projects" class="grid"><div class="tile"><span>Form &amp; Function</span></div><div class="tile"><span>Beyond the Frame</span></div></section></main>
+<footer><div class="wrapper">Studio Meridian · Sample only. No real agency is represented.</div></footer>
+</body></html>

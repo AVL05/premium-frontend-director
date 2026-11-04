@@ -100,6 +100,10 @@ LICENSE
 CONTRIBUTING.md
 ```
 
+## Reproducible browser smoke fixture
+
+A standalone sample page and a browser-check recipe are available in [examples/visual-audit-fixture](examples/visual-audit-fixture/README.md). The optional Playwright helper now also flags broken images, missing image alt attributes, unlabeled form controls, missing main/title, and unexpected h1 count. This is **not a substitute for WCAG, Lighthouse or human visual review**.
+
 ## Development and validation
 
 ```bash
