@@ -45,12 +45,28 @@ class PackageTests(unittest.TestCase):
         for profile in ("Core", "Premium", "Studio"):
             self.assertIn(profile, guide)
             self.assertIn(profile, skill)
-        for companion in ("ui-ux-pro-max", "design-taste-frontend", "impeccable", "web-design-guidelines", "react-best-practices"):
+        for companion in ("ui-ux-pro-max", "design-taste-frontend", "impeccable", "web-design-guidelines", "vercel-react-best-practices"):
             self.assertIn(companion, guide)
             self.assertIn(companion, deps)
         self.assertIn("agent-browser install", guide)
         self.assertIn("Leonxlnx/imagegen-skills", guide)
-        self.assertIn("not", deps.lower())
+        self.assertIn("no companion skills", deps)
+
+    def test_quickstart_guides_and_profile_commands(self):
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        spanish = (ROOT / "docs/GUIA-ES.md").read_text(encoding="utf-8")
+        english = (ROOT / "docs/companion-profiles.md").read_text(encoding="utf-8")
+        dependencies = (ROOT / "skills/premium-frontend-director/references/dependencies.md").read_text(encoding="utf-8")
+        for content in (readme, spanish, english, dependencies):
+            for profile in ("Core", "Premium", "Studio"):
+                self.assertIn(profile, content)
+            self.assertIn("vercel-react-best-practices", content)
+        self.assertIn("--ai codex", spanish)
+        self.assertIn("--ai claude", spanish)
+        self.assertIn("npx impeccable install", spanish)
+        self.assertIn("NOT RUN", spanish)
+        self.assertIn("Agent Browser", dependencies)
+        self.assertNotIn("../../../docs/", dependencies)
 
     def test_missing_manifest_fails_cleanly(self):
         with tempfile.TemporaryDirectory() as tmp:

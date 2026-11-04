@@ -1,44 +1,36 @@
-# Requirements, capabilities and coordinated companion skills
+# Self-contained integration contract
 
-The Director is **self-contained**: other design skills are optional. Its default fallback is `references/creative-direction.md`, `references/implementation.md`, and `references/quality-gates.md`.
+Premium Frontend Director requires **no companion skills**. The one installed `SKILL.md` and the references bundled in this directory suffice for Core. External guides in the GitHub checkout are **not required** at runtime: installers may copy only this skill directory.
 
-Read [companion profiles and installation](../../../docs/companion-profiles.md) to choose Core, Premium or Studio and for verified upstream installer guidance.
+## Profile matrix (also bundled for portable installations)
 
-## Capability detection and routing
+- **Core**: Director only; use `creative-direction.md`, `implementation.md` and `quality-gates.md`. Browser QA is `NOT RUN` unless verified.
+- **Premium**: Core plus optional **UI UX Pro Max** (`ui-ux-pro-max`), **Taste Skill** (`design-taste-frontend`), **Impeccable** (`impeccable`) and **Web Design Guidelines** (`web-design-guidelines`).
+- **Studio**: Premium plus optional **Design System Patterns** (`design-system-patterns`); add **Vercel React Best Practices** (`vercel-react-best-practices`) only for React/Next.js and optional `responsive-design`, `accessibility-compliance` and Tailwind guidance only when needed.
 
-1. Identify current project's frontend framework, complexity, design system, real assets, routes, test commands and user constraints.
-2. Choose **Core** unless the user asks for a premium/studio experience, a complex design system exists, or registered companions match the task. **Premium** is recommended for highly distinctive frontends; **Studio** is conditional on architecture.
-3. Query the host's **actual registered skills and available tools**. Missing skills must not block the core workflow. Explicitly report `NOT AVAILABLE` when a requested companion cannot be invoked.
-4. In the discovery phase, use `ui-ux-pro-max` to consult style/palette/type databases if available. Its search scripts need Python 3. Without it, use the brief and internal creative-direction guidance.
-5. In art direction, use **one primary** taste contributor (prefer `design-taste-frontend` if installed), rather than conflicting multiple frontend-design directives.
-6. Use design-system-patterns only for scalable design-token/component work. Use react-best-practices only when React/Next.js is actually present. Add responsive/accessibility/tailwind guidance only when relevant.
-7. After implementation, use `impeccable` for critique/polish when invocable; use web-design-guidelines for interface audits if available. Neither is a substitute for browser testing.
-8. Capture actual results with existing Playwright or other available browser automation. Agent Browser is an external CLI, **not** a required skill and not interchangeable with `visual-audit.mjs`. Browser checks not run are `NOT RUN`.
+A complete user-friendly setup guide is available in the repository `docs/GUIA-ES.md` and `docs/companion-profiles.md` (not assumed to be present inside an installed skill).
 
-## Required baseline
+## Routing
 
-- Host able to load `SKILL.md` and access project files.
-- Write permission only when implementation is requested.
-- The target project's own runtime/build tools for running the app.
-- No universal React, Node or Python requirement for **Core instruction execution**.
-- Optional companion runtimes are **conditional**; see profile documentation.
+1. Inspect the user brief, existing stack, sources, visual assets, tests and project rules. Choose the user-requested profile; default to Core unless the brief clearly requests Premium.
+2. Discover the agent's **actually registered and invocable** skills/tools, not guessed filesystem paths.
+3. In Premium/Studio research, use UI UX Pro Max's style, palette and font data if available. Python 3 is required to run its search scripts. Otherwise rely on `creative-direction.md`.
+4. In art direction, use **one** primary contributor: prefer Taste Skill if available, otherwise another registered native design skill or the bundled reference. Never combine opposing visual presets.
+5. In Studio, use Design System Patterns for broad component/token architecture; `vercel-react-best-practices` **only for React/Next.js**.
+6. During final refinement, use Impeccable for critique if invocable and Web Design Guidelines for heuristic review, if available. Otherwise use `quality-gates.md`.
+7. For real screenshots and interactions, use available Playwright or a browser CLI. **Agent Browser is a separate CLI, not a required skill or a drop-in replacement for `visual-audit.mjs`.**
+8. Report each companion as **USED**, **NOT AVAILABLE**, or **NOT NEEDED**; mark unperformed browser/test gates **NOT RUN**. Successful install is not proof that a skill ran.
 
-## Permission, security and precedence
+## Runtime requirements and safe fallbacks
 
-- Never install third-party skills, packages, binaries, fonts or paid services without authorization.
-- Verify the current upstream publisher and license; no skill code is redistributed here.
-- User brief, repository rules, security, accessibility and maintainability take precedence.
-- `design.md` stays canonical; store source-specific findings without mixing incompatible token systems.
-- Distinguish tool present, skill discoverable, skill actually invoked, and validation actually passed.
-- Do not pretend a named skill is invocable if the host cannot compose skills.
+- **Core:** skill-capable Codex/Claude Code host, project read access; write access for implementation.
+- **Premium:** optional Node.js 22+ and Chrome/Edge/Chromium for Taste Skill browser scripts; Python 3 for UI UX Pro Max search scripts. Do not assume these are universally available.
+- **Studio:** same as Premium; honor the app's own framework build tools.
+- **Playwright:** reuse the target project's browser automation. If missing, request authorization before `npm install --save-dev @playwright/test` and `npx playwright install chromium`.
+- **Accessibility/performance:** automatic scanners do not certify WCAG or Lighthouse scores without actual measurements; use visible evidence.
 
-## Playwright fallback instructions
+## Permissions and precedence
 
-Use existing project tooling. If absent, request approval before changing dependencies:
+Never install third-party skills, packages, binaries, fonts, assets or paid services without authorization. Respect the user brief, repo rules, security, accessibility, and maintainability. Preserve the canonical `design.md`; don't mix contradictory design systems. No companion is a transitive dependency. Never claim missing tooling was used.
 
-```bash
-npm install --save-dev @playwright/test
-npx playwright install chromium
-```
-
-If browser tools remain unavailable, perform static review and document which visual/interaction gates were `NOT RUN`.
+For upstream names and optional commands consult the repo guide if available. If it is not installed, continue autonomously using this file and bundled references.

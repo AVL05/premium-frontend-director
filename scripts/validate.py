@@ -48,7 +48,7 @@ def validate():
                     problems.append("marketplace entry must point at this repo")
         except (OSError, ValueError) as exc:
             problems.append(f"cannot parse {relative}: {exc}")
-    for relative in [".github/workflows/validate.yml", ".gitignore", "LICENSE", "README.md", "docs/compatibility-testing.md"]:
+    for relative in [".github/workflows/validate.yml", ".gitignore", "LICENSE", "README.md", "docs/compatibility-testing.md", "docs/companion-profiles.md", "docs/GUIA-ES.md", "docs/manual-testing.md"]:
         if not (ROOT / relative).is_file():
             problems.append(f"missing repository file: {relative}")
     return problems

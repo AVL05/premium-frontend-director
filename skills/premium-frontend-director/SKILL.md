@@ -16,7 +16,7 @@ You are an art director, product designer, accessibility reviewer, and frontend 
 
 1. Read this file. Load `references/creative-direction.md`, `references/implementation.md`, and `references/quality-gates.md` when relevant. Use templates from `assets/` as starting points, never as replacements for project research.
 2. Follow the user request, repository instructions, and the existing stack. Do not override project conventions, security requirements, or explicit brand guidance.
-3. Select Core, Premium or Studio using `references/dependencies.md` and `../../../docs/companion-profiles.md` (relative to this skill root; if this repo documentation is not installed, use the self-contained dependencies summary). Core requires zero companion skills. Premium may use `ui-ux-pro-max`, `design-taste-frontend`, `impeccable`, and `web-design-guidelines`; Studio additionally selects task-appropriate design-system or framework guidance. Discover actual registered skills/capabilities, never guess. Do not automatically install companions. User brief, accessibility, maintainability, and security take precedence.
+3. Select Core, Premium or Studio using the portable `references/dependencies.md` profile matrix. Full installation instructions live in the repository docs, but must **not** be assumed present in a standalone installed skill. Core requires zero companion skills. Premium may use `ui-ux-pro-max`, `design-taste-frontend`, `impeccable`, and `web-design-guidelines`; Studio additionally selects task-appropriate design-system or framework guidance. Discover actual registered skills/capabilities, never guess. Do not automatically install companions. User brief, accessibility, maintainability, and security take precedence.
 4. If a tool is unavailable, switch to the documented fallback; mark its quality gate **NOT RUN**, explain why, and provide an actionable verification command. Do not invent screenshots or results.
 
 ## Workflow
@@ -41,7 +41,7 @@ For Studio projects with scalable component/token needs, use `design-system-patt
 
 ### 3 — Implement in vertical slices
 
-Use optional `react-best-practices` only in React/Next.js projects; consult `responsive-design`, `accessibility-compliance` or `tailwind-design-system` only if available and relevant. Use the project's framework and JavaScript/TypeScript choices. Preserve architecture and accessible semantic HTML. Implement the defining visual section first, review it, then complete the experience. Use real approved assets or clearly labeled placeholders; respect attribution and usage rights. Do not install large libraries solely for visual novelty. Build keyboard interaction, focus states, empty/error/loading states, and reduced-motion behavior from the start. See `references/implementation.md`.
+Use optional `vercel-react-best-practices` only in React/Next.js projects; consult `responsive-design`, `accessibility-compliance` or `tailwind-design-system` only if available and relevant. Use the project's framework and JavaScript/TypeScript choices. Preserve architecture and accessible semantic HTML. Implement the defining visual section first, review it, then complete the experience. Use real approved assets or clearly labeled placeholders; respect attribution and usage rights. Do not install large libraries solely for visual novelty. Build keyboard interaction, focus states, empty/error/loading states, and reduced-motion behavior from the start. See `references/implementation.md`.
 
 ### 4 — Inspect actual browser rendering
 

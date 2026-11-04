@@ -1,176 +1,107 @@
 # Premium Frontend Director
 
-**Art direction → design system → implementation → browser review.** A self-contained, open-source Agent Skill for Codex, Claude Code, and compatible coding agents.
+**A cross-agent creative director for distinctive, production-minded frontend design.** Plan the art direction, document the system, implement within the existing stack, critique the real page and report actual browser evidence.
 
-> **Status:** v1.0.0 — packaging and static checks validated; real-world Codex / Claude Code installation and live-browser integration are **not yet certified**. No skill can guarantee a €10,000 aesthetic, bug-free output, or WCAG conformance.
+[**Guía de instalación en español**](docs/GUIA-ES.md) · [Detailed profile guide (English)](docs/companion-profiles.md) · [Manual agent tests](docs/manual-testing.md)
 
-## What it does
+> **Release status:** Source and CI-validated development version. Real end-to-end installations in Codex and Claude Code and generated-design evaluations remain **NOT RUN**. A skill cannot guarantee design value, bug-free output or WCAG compliance.
 
-- Three meaningfully different design directions before implementation.
-- A project-specific `design.md` with tokens, imagery, responsiveness, states and motion.
-- Frontend implementation that respects the **existing stack**, including JavaScript-only repositories.
-- Browser screenshot/overflow/console review and actionable iterative improvements.
-- Explicit `PASS`, `FAIL`, and `NOT RUN` gates; no invented tests, metrics or screenshots.
-- No paid tools, external design skills, particular framework or build tool required.
+## Install in 60 seconds
 
-## Requirements
-
-| Requirement | Required? | Details |
-| --- | --- | --- |
-| Codex / Claude Code / Agent Skills-capable host | Yes | Must load `SKILL.md` |
-| Access to frontend source code | Yes | Write access for implementation |
-| Existing app runtime/build tools | When building/running | Use the target project's toolchain |
-| Browser + Playwright | For automated visual sign-off | Not required for planning/static work; missing → gate `NOT RUN` |
-| Other design skills | No | Optional enhancement only |
-| Figma, image generation, GSAP, Three.js | No | Per-project additions, not dependencies |
-
-See [dependency matrix](skills/premium-frontend-director/references/dependencies.md) for fallbacks and optional skills.
-
-## Install
-
-### Option A — Portable installer (`npx skills`)
-
-Install from the public repository:
+Open a terminal in your frontend project and choose **Codex** or **Claude Code** when asked by the installer:
 
 ```bash
 npx skills add https://github.com/AVL05/premium-frontend-director --skill premium-frontend-director
 ```
 
-**Verification:** Published repository confirmed. End-to-end installer behavior is not yet certified for all CLI/agent versions. Inspect commands and run `npx skills --help` for supported options.
-
-### Option B — Codex (native project location)
-
-Copy `skills/premium-frontend-director/` to `.agents/skills/premium-frontend-director/` in the target project, or to `~/.agents/skills/premium-frontend-director/` for personal use. Restart your agent if it doesn't discover the skill. Exact global locations may vary by installed Codex version.
-
-### Option C — Claude Code (native project location)
-
-Copy `skills/premium-frontend-director/` to `.claude/skills/premium-frontend-director/` in the target project, or to `~/.claude/skills/premium-frontend-director/` for personal use.
-
-### Option D — Claude Code plugin marketplace
-
-Inside Claude Code:
+Or use the Claude Code plugin marketplace **instead of installing a second copy**:
 
 ```text
 /plugin marketplace add AVL05/premium-frontend-director
 /plugin install premium-frontend-director@premium-frontend-director-marketplace
 ```
 
-This repo includes `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, and a single canonical skill in `skills/`. Commands require the repository to be publicly accessible and the user's Claude Code version to support plugins.
+Restart the agent and confirm it has discovered the skill. Detailed native paths and Windows PowerShell instructions: [manual testing](docs/manual-testing.md).
 
-## Use
+## Choose your profile
 
-```text
-Use $premium-frontend-director to redesign this interface. Audit the current repo, propose three distinct directions, document design.md, implement the chosen system, and review the actual rendering at mobile and desktop widths. Do not claim checks that you could not run.
-```
-
-For Claude Code, request the skill by name if your environment doesn't support `$` invocation.
-
-## Skill profiles: Core, Premium and Studio
-
-Choose a profile based on project complexity. **Only the Director is required**. Extra skills never install automatically and are not guaranteed to improve output; browser review and human taste validation remain necessary.
-
-| Profile | Skills / tools | Recommended for |
+| Profile | Install these skills | Additional prerequisites |
 | --- | --- | --- |
-| **Core** | Director + existing frontend tooling, browser QA when available | Any website; no third-party skill dependency |
-| **Premium** (recommended) | Core + **UI UX Pro Max** (research) + **Taste Skill** (art direction) + **Impeccable** (polish) + **Web Design Guidelines** (review) | Distinctive portfolios, landing pages and premium products |
-| **Studio** | Premium + **Design System Patterns** for larger token systems, **React Best Practices** for React/Next.js only, optional responsive/accessibility/Tailwind-specific guidance | Complex SaaS, dashboards and multi-page systems |
+| **Core** | **Premium Frontend Director** only | Agent supporting skills; frontend project. Browser testing is optional but necessary to claim visual sign-off. |
+| **Premium** (recommended for high-end sites) | **Core** + **UI UX Pro Max** + **Taste Skill** (`design-taste-frontend`) + **Impeccable** + **Web Design Guidelines** | Node.js 22+, Python 3 (UI UX searches), Chrome/Edge/Chromium (Taste/browser workflows) |
+| **Studio** (larger products) | **Premium** + **Design System Patterns**; add **Vercel React Best Practices** if using React/Next.js, and **Responsive Design**, **Accessibility Compliance**, **Tailwind Design System** only when relevant | Same as Premium, plus the project's own framework/toolchain |
 
-For **exact Codex/Claude install commands, upstream URLs, prerequisites, routing rules, and security caveats**, see **[Companion profiles & installations](docs/companion-profiles.md)**. This is the source of truth for optional installations.
+**Only the Director is mandatory.** Companion skills enhance specific phases; none is auto-installed. Studio is *not* "install everything."
 
-### Recommended quick setup
+### Premium add-on commands
+
+Run these **after installing Core**, using the vendor's current installer:
 
 ```bash
-# Core / director
-npx skills add https://github.com/AVL05/premium-frontend-director --skill premium-frontend-director
+# UI UX Pro Max — choose ONE for your agent:
+npx ui-ux-pro-max-cli init --ai codex
+# OR
+npx ui-ux-pro-max-cli init --ai claude
 
-# Premium / optional creative direction
+# Taste Skill
 npx skills add https://github.com/Leonxlnx/taste-skill --skill design-taste-frontend
 
-# Premium / optional design critique
+# Impeccable — follow the interactive prompts
 npx impeccable install
 
-# Premium / optional UI guideline audit
+# Web Design Guidelines
 npx skills add vercel-labs/agent-skills --skill web-design-guidelines
 ```
 
-**UI UX Pro Max requires its dedicated CLI** (plus Python 3 for its search scripts), not merely the generic `skills add` command. Use `npx ui-ux-pro-max-cli init --ai codex` or `--ai claude` as appropriate. **Agent Browser is a separate browser CLI**, not a skill installation; see the guide. Taste Skill's default is maintained at its current v2.x line; older classic skills and `image-to-code` have moved to separate repositories. <https://github.com/Leonxlnx/taste-skill>
+For **Studio**: `npx skills add wshobson/agents --skill design-system-patterns`. For React/Next.js: `npx skills add vercel-labs/agent-skills --skill vercel-react-best-practices`. Optional responsive/accessibility/Tailwind commands and Agent Browser setup are in the [Spanish guide](docs/GUIA-ES.md) and [profile details](docs/companion-profiles.md). Review third-party code and choose project/global scope deliberately.
 
-### Orchestration
+## How to use
 
-1. **Director** owns scope, three proposed art directions, `design.md`, implementation, tests, and final sign-off.
-2. **UI UX Pro Max** contributes discovery data and visual systems, if installed.
-3. **Taste Skill** contributes *one* cohesive aesthetic direction. Avoid competing style instructions.
-4. **Design System Patterns / React Best Practices** are invoked only for matching Studio project needs.
-5. **Impeccable** critiques and polishes the implemented UI. **Web Design Guidelines** adds heuristic review.
-6. **Playwright / other real browser automation** checks actual output and reports PASS / FAIL / NOT RUN; no tool substitutes for unperformed tests.
-
-Example prompt:
+Open **your frontend application** in Codex or Claude Code, then paste:
 
 ```text
-Use premium-frontend-director in Premium mode. Inspect the existing frontend,
-and, only if available, consult UI UX Pro Max for research, Taste Skill for a
-single coherent art direction, and Impeccable for final critique. Use Web Design
-Guidelines for targeted QA. Create a project-specific design.md, implement
-without regressions, capture desktop/mobile screenshots and report observed
-PASS/FAIL/NOT RUN gates. Do not auto-install external skills.
+Use premium-frontend-director in Premium mode on this frontend.
+Inspect the code and actual registered companion skills.
+Propose three distinct visual directions, then implement the most appropriate.
+Create design.md with the design tokens and decisions.
+Use UI UX Pro Max for research, Taste Skill for art direction and Impeccable
+for a final critique only if they are really available.
+Check the rendered app in a browser at mobile, tablet and desktop widths,
+fix visible defects, preserve existing functionality and document
+PASS / FAIL / NOT RUN results with actual evidence.
+Never auto-install other skills or invent verification results.
 ```
 
-## Visual audit helper
+**Core:** replace `Premium` with `Core`. **Studio:** replace it with `Studio` for complex SaaS/dashboard projects. The Director selects only relevant companions: a single primary taste contributor, framework-specific implementation advice and independent QA.
 
-For projects with Playwright already available, launch the target frontend and run:
+## What the skill does
+
+1. Audits the brief and existing project and proposes **three meaningful art directions**.
+2. Establishes one coherent identity and produces a project-specific **`design.md`**.
+3. Builds the experience in the project's **existing framework** and preserves behavior.
+4. Runs a focused critique and refines hierarchy, typography, spacing, states and motion.
+5. Inspects the real interface via a browser at **375, 768, 1440, 1920 px** when tooling is available.
+6. Reports quality gates as **PASS / FAIL / NOT RUN** — never fake screenshots or WCAG/Lighthouse results.
+
+## Browser quality check
+
+The repository contains an optional read-only [Playwright smoke helper](skills/premium-frontend-director/scripts/visual-audit.mjs). Install Playwright in the **target app** when authorized and run it from the app root:
 
 ```bash
-node /path/to/premium-frontend-director/skills/premium-frontend-director/scripts/visual-audit.mjs --url http://localhost:3000 --out ./artifacts/visual-audit
+npm install --save-dev @playwright/test
+npx playwright install chromium
+node /path/to/skill/scripts/visual-audit.mjs --url http://localhost:3000 --out ./artifacts/visual-audit
 ```
 
-**Important:** Run this command from the target application's root directory. Playwright is resolved from that project's `node_modules`. The helper is intentionally read-only with respect to your app and restricts URLs to localhost. It produces screenshots and `report.json`; not a complete visual, accessibility or performance audit.
+The last path is illustrative: replace it with the **actual installed path** to the script. Use existing browser tooling rather than installing duplicates. This checks screenshot, overflow, console/network and elementary semantics; it is **not** a full accessibility, visual regression, interaction or performance audit. [Reproducible fixture](examples/visual-audit-fixture/README.md).
 
-## Repository structure
+## CI, maintenance and status
 
-```text
-.claude-plugin/                  Claude plugin and marketplace manifests
-skills/premium-frontend-director/
-  SKILL.md                       Canonical cross-agent workflow
-  references/                   Creative direction, implementation, quality, dependencies\ndocs/companion-profiles.md      Core/Premium/Studio matrix, installation, provenance
-  assets/design-template.md     Project design.md template
-  scripts/visual-audit.mjs      Optional browser smoke check
-.github/workflows/              CI validation
-scripts/                         Skill packaging checks
-LICENSE
-CONTRIBUTING.md
-```
+- `python scripts/validate.py`
+- `python -m unittest discover -s tests -v`
+- GitHub Actions: package checks on Windows/Linux; Chromium fixture screenshots and report.
+- Cross-agent integration and visual comparisons: **manual acceptance required**. [Testing guide](docs/manual-testing.md) · [Release gate](https://github.com/AVL05/premium-frontend-director/issues/3).
+- Optional third-party skills/tools are external, are **not bundled**, and can change independently. [Upstream URLs, installers and fallback behavior](docs/companion-profiles.md).
+- Contributions welcome: [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Reproducible browser smoke fixture
-
-A standalone sample page and a browser-check recipe are available in [examples/visual-audit-fixture](examples/visual-audit-fixture/README.md). The optional Playwright helper now also flags broken images, missing image alt attributes, unlabeled form controls, missing main/title, and unexpected h1 count. This is **not a substitute for WCAG, Lighthouse or human visual review**.
-
-## Automated CI coverage
-
-On every push to `main` and on pull requests, GitHub Actions validates the skill's manifests and Python unit tests on **Windows and Linux**, checks JavaScript syntax, then runs the local smoke fixture in **Chromium**. Four viewport screenshots plus `report.json` are uploaded as CI artifacts for 14 days. This checks browser execution and the fixture—not the behavior of Codex or Claude Code, the accessibility of arbitrary sites, or the artistic quality of generated designs.
-
-## Development and validation
-
-```bash
-python scripts/validate.py
-python -m unittest discover -s tests -v
-```
-
-CI validates paths, metadata, referenced files, manifests and basic portability, **not** agent behavior or visual output. Follow the [Windows-friendly manual acceptance guide](docs/manual-testing.md) to test Codex native, Claude native, Claude marketplace, and the optional portable installer using the same reference brief. Record actual PASS / FAIL / NOT RUN results before declaring cross-agent certification.
-
-## Roadmap
-
-- [x] Public GitHub repository published
-- [ ] Verified release tag with compatibility evidence
-- [ ] Fresh Codex installation and sample-site integration test
-- [ ] Fresh Claude Code installation and plugin marketplace test
-- [x] CI browser smoke and four screenshot artifacts for the local fixture
-- [ ] Automated screenshot comparison baselines and accessibility test recipe
-- [ ] Example websites + real before/after evidence
-
-## Release readiness
-
-CI checks package structure, manifests, syntax and unit tests. It does **not** prove that Codex/Claude Code can load the skill on every supported version or guarantee aesthetic outcomes. Before an official stable release, follow [the compatibility test matrix](docs/compatibility-testing.md) and publish actual browser evidence. Report untested combinations as **NOT RUN**.
-
-## License
-
-MIT. The brand names Codex, Claude Code, Figma and others belong to their respective owners. Not affiliated with OpenAI or Anthropic.
+**License:** MIT. No affiliation with OpenAI, Anthropic, Vercel or the authors of companion skills.
