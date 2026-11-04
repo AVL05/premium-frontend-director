@@ -115,7 +115,7 @@ python scripts/validate.py
 python -m unittest discover -s tests -v
 ```
 
-CI validates paths, metadata, referenced files, manifests and basic portability, **not** agent behavior or visual output. Test manually in Codex and Claude Code with the same reference app before declaring cross-agent certification.
+CI validates paths, metadata, referenced files, manifests and basic portability, **not** agent behavior or visual output. Follow the [Windows-friendly manual acceptance guide](docs/manual-testing.md) to test Codex native, Claude native, Claude marketplace, and the optional portable installer using the same reference brief. Record actual PASS / FAIL / NOT RUN results before declaring cross-agent certification.
 
 ## Roadmap
 
