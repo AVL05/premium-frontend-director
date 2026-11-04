@@ -68,6 +68,28 @@ class PackageTests(unittest.TestCase):
         self.assertIn("Agent Browser", dependencies)
         self.assertNotIn("../../../docs/", dependencies)
 
+    def test_creative_ambition_and_g11_are_portable(self):
+        root = ROOT / "skills/premium-frontend-director"
+        skill = (root / "SKILL.md").read_text(encoding="utf-8")
+        modes = (root / "references/ambition-modes.md").read_text(encoding="utf-8")
+        immersive = (root / "references/immersive-design.md").read_text(encoding="utf-8")
+        gates = (root / "references/quality-gates.md").read_text(encoding="utf-8")
+        implementation = (root / "references/implementation.md").read_text(encoding="utf-8")
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        spanish = (ROOT / "docs/GUIA-ES.md").read_text(encoding="utf-8")
+        for mode in ("Refined", "Expressive", "Immersive"):
+            for doc in (skill, modes, readme, spanish):
+                self.assertIn(mode, doc)
+        for doc in (skill, modes, gates, implementation, readme):
+            self.assertIn("G11", doc)
+        self.assertIn("WebGL", immersive)
+        self.assertIn("reduced motion", immersive.lower())
+        self.assertIn("NOT RUN", gates)
+        self.assertIn("FAIL", gates)
+        self.assertIn("before", modes.lower())
+        self.assertIn("prototype", modes.lower())
+        self.assertIn("Core requires zero companion skills", skill)
+
     def test_missing_manifest_fails_cleanly(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
