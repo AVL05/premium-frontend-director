@@ -28,3 +28,7 @@ Default blue-purple gradient, glassmorphism everywhere, nested card grids withou
 ## Reference ethics
 
 Reference mood, hierarchy, proportions, and interaction patterns. Do not clone trademarked site identity, reproduce protected illustrations, copy text, or reuse unlicensed photography. Document permitted assets.
+
+## Creative ambition beyond conventional polish
+
+Read `ambition-modes.md` and choose Refined, Expressive or Immersive **independently** of Core/Premium/Studio. Three concepts for Expressive or Immersive must be visibly different in staging, narrative progression and interaction—not merely palette or font. Define a first-frame composition and signature moment, using real assets. For Immersive, read `immersive-design.md` and evaluate spatial staging and optional WebGL while preserving clear fallbacks. A radical user brief must not be reduced to conservative editorial polish just because the current page is restrained.
