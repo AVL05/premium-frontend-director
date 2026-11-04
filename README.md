@@ -30,13 +30,13 @@ See [dependency matrix](skills/premium-frontend-director/references/dependencies
 
 ### Option A — Portable installer (`npx skills`)
 
-After publishing this exact repository under your GitHub account:
+Install from the public repository:
 
 ```bash
 npx skills add https://github.com/AVL05/premium-frontend-director --skill premium-frontend-director
 ```
 
-**Note:** This command is an intended distribution method, not a tested published URL. The GitHub repository must exist first. Verify the CLI's current supported host flags with `npx skills --help`.
+**Verification:** Published repository confirmed. End-to-end installer behavior is not yet certified for all CLI/agent versions. Inspect commands and run `npx skills --help` for supported options.
 
 ### Option B — Codex (native project location)
 
@@ -46,7 +46,7 @@ Copy `skills/premium-frontend-director/` to `.agents/skills/premium-frontend-dir
 
 Copy `skills/premium-frontend-director/` to `.claude/skills/premium-frontend-director/` in the target project, or to `~/.claude/skills/premium-frontend-director/` for personal use.
 
-### Option D — Claude Code plugin marketplace (after publishing)
+### Option D — Claude Code plugin marketplace
 
 Inside Claude Code:
 
@@ -111,11 +111,16 @@ CI validates paths, metadata, referenced files, manifests and basic portability,
 
 ## Roadmap
 
-- [ ] Public GitHub publication and release tag
+- [x] Public GitHub repository published
+- [ ] Verified release tag with compatibility evidence
 - [ ] Fresh Codex installation and sample-site integration test
 - [ ] Fresh Claude Code installation and plugin marketplace test
 - [ ] Automated screenshot comparison baselines and accessibility test recipe
 - [ ] Example websites + real before/after evidence
+
+## Release readiness
+
+CI checks package structure, manifests, syntax and unit tests. It does **not** prove that Codex/Claude Code can load the skill on every supported version or guarantee aesthetic outcomes. Before an official stable release, follow [the compatibility test matrix](docs/compatibility-testing.md) and publish actual browser evidence. Report untested combinations as **NOT RUN**.
 
 ## License
 

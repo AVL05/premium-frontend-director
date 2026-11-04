@@ -1,0 +1,14 @@
+{
+  "name": "premium-frontend-director-marketplace",
+  "owner": {
+    "name": "AVL05"
+  },
+  "plugins": [
+    {
+      "name": "premium-frontend-director",
+      "source": "./",
+      "description": "Art-directed frontend workflow with responsive browser quality gates.",
+      "category": "development"
+    }
+  ]
+}
