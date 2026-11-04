@@ -27,3 +27,7 @@
 - **Commerce:** preserve trust, discoverability, checkout and accessibility.
 - **Marketing:** clarify value proposition, trust evidence and CTA hierarchy.
 - **Existing brands:** align to the established design system rather than substituting a fashionable aesthetic.
+
+## G11 proof-of-concept implementation gate
+
+For Expressive/Immersive redesigns, create a **real browser-rendered prototype** of the defining first viewport and signature transition before rebuilding the rest of the site. Record the old view at the same viewport/state, then compare against the prototype and test the signature interaction. If the changes are primarily typography, palette, spacing and captions while the user requested a radical transformation, **G11 FAIL**: revise the creative approach before expanding changes. Build/lint/E2E passing never waives G11. Use `ambition-modes.md` and `immersive-design.md`. Keep changes reversible, and preserve data, accessibility, behavior, asset rights, and measured performance. Immersive does not mandate WebGL.
