@@ -13,7 +13,7 @@ Report each gate using `PASS`, `FAIL`, or `NOT RUN`, with objective evidence. Do
 | G7 Engineering | Existing lint/tests/build with actual results |
 | G8 Performance | Measured load/bundle data when tools permit; otherwise NOT RUN |
 | G9 Assets/content | Asset licenses, no fabricated claims, appropriate alt text |
-| G10 Regression | Existing business flows checked; explicit unknowns |
+| G10 Regression | Existing business flows checked; explicit unknowns |\n| **G11 Visual Ambition** | Matched before/after first view, structural change, proven signature interaction and fit to requested mode; fail merely cosmetic radical redesigns |
 
 ## Browser review recipe
 
@@ -36,3 +36,15 @@ From the skill root, run `node scripts/visual-audit.mjs --url http://localhost:3
 - Gate status table with commands/evidence
 - Screenshot paths (only real ones)
 - Known issues and explicit next steps
+
+## G11 — Visual Ambition Gate (redesigns)
+
+**Qualitative evidence, never a fabricated numeric score.** A redesign must match the requested **Refined / Expressive / Immersive** ambition, not merely build and test successfully.
+
+1. Capture **before/after** screenshots of the *same route, viewport, scroll position and UI state*, including the first viewport at mobile and desktop widths. Record which image, composition, visual staging and structural progression changed.
+2. For Expressive/Immersive, identify a **signature moment** (interaction or transition). Exercise it in a real browser and record a short video when possible, or sequential frames and reproducible interaction steps. A static screenshot alone does not prove animation.
+3. Review the proposed first-frame composition and the mobile equivalent. Compare structural difference—not only fonts, color, margins or metadata.
+4. When the user explicitly wanted a spectacular/radical/immersive change and the result is mainly cosmetic, **G11 FAIL**. Rework the prototype **before scaling to other sections**.
+5. If comparable screenshots or interaction inspection were not performed, **G11 NOT RUN**. Passing a screenshot scanner does not turn this into PASS.
+6. G11 PASS means a reasoned, evidence-based internal judgement that the change meets the requested scope, **not** a declaration of artistic excellence, user approval or financial value.
+7. Verify keyboard access, reduced motion and static/low-end fallback; these remain distinct quality gates. Measure performance where possible and report NOT RUN otherwise.
