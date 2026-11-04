@@ -4,7 +4,7 @@
 
 [**Guía de instalación en español**](docs/GUIA-ES.md) · [Detailed profile guide (English)](docs/companion-profiles.md) · [Manual agent tests](docs/manual-testing.md)
 
-> **Release status:** Source and CI-validated development version. Real end-to-end installations in Codex and Claude Code and generated-design evaluations remain **NOT RUN**. A skill cannot guarantee design value, bug-free output or WCAG compliance.
+> **Release status:** Source and CI-validated development version. CI verifies packaging and a Chromium fixture, not agent-specific creative quality. Codex local user-reported tests exist; Claude Code agent integration remains unverified. A skill cannot guarantee design value, bug-free output or WCAG compliance.
 
 ## Install in 60 seconds
 
@@ -22,6 +22,22 @@ Or use the Claude Code plugin marketplace **instead of installing a second copy*
 ```
 
 Restart the agent and confirm it has discovered the skill. Detailed native paths and Windows PowerShell instructions: [manual testing](docs/manual-testing.md).
+
+## Creative ambition — separate from the skill profile
+
+**Core / Premium / Studio chooses companion skills. Refined / Expressive / Immersive chooses how boldly to transform the interface.** They are independent.
+
+| Ambition | Expected result |
+| --- | --- |
+| **Refined** | Elegant, restrained and polished; appropriate for maintenance or established visual systems |
+| **Expressive** | Distinctive composition, original narrative and a visible signature interaction |
+| **Immersive** | Cinematic or spatial experience with a **working first-viewport prototype and signature transition**, visual before/after evidence and accessible fallback |
+
+Use **Premium + Immersive** for ambitious photography/experimental sites. Immersive **does not require Three.js**; it requires meaningful visual impact and functioning interaction.
+
+For ambitious redesigns, **G11 Visual Ambition** compares the actual before and after at matching viewports, evaluates structural change and requires evidence of the signature interaction. A green build with only changes to colors, font and spacing **fails G11** when the user demanded a radical transformation. The agent must revise the prototype before expanding the redesign to all pages.
+
+See [Ambition modes](skills/premium-frontend-director/references/ambition-modes.md), [Immersive design](skills/premium-frontend-director/references/immersive-design.md) and [quality gates](skills/premium-frontend-director/references/quality-gates.md).
 
 ## Choose your profile
 
@@ -60,9 +76,9 @@ For **Studio**: `npx skills add wshobson/agents --skill design-system-patterns`.
 Open **your frontend application** in Codex or Claude Code, then paste:
 
 ```text
-Use premium-frontend-director in Premium mode on this frontend.
+Use premium-frontend-director with Premium tool profile and a chosen ambition mode (Refined, Expressive or Immersive) on this frontend.
 Inspect the code and actual registered companion skills.
-Propose three distinct visual directions, then implement the most appropriate.
+Propose three experientially distinct directions. For Expressive/Immersive, first prototype and inspect the defining visual moment against before screenshots; only extend after G11 review.
 Create design.md with the design tokens and decisions.
 Use UI UX Pro Max for research, Taste Skill for art direction and Impeccable
 for a final critique only if they are really available.
@@ -81,7 +97,7 @@ Never auto-install other skills or invent verification results.
 3. Builds the experience in the project's **existing framework** and preserves behavior.
 4. Runs a focused critique and refines hierarchy, typography, spacing, states and motion.
 5. Inspects the real interface via a browser at **375, 768, 1440, 1920 px** when tooling is available.
-6. Reports quality gates as **PASS / FAIL / NOT RUN** — never fake screenshots or WCAG/Lighthouse results.
+6. Applies **G11 Visual Ambition** to redesigns, requiring matched before/after evidence of a perceptible change and verified signature interaction for ambitious modes.\n7. Reports quality gates as **PASS / FAIL / NOT RUN** — never fake screenshots or WCAG/Lighthouse results.
 
 ## Browser quality check
 
