@@ -104,6 +104,10 @@ CONTRIBUTING.md
 
 A standalone sample page and a browser-check recipe are available in [examples/visual-audit-fixture](examples/visual-audit-fixture/README.md). The optional Playwright helper now also flags broken images, missing image alt attributes, unlabeled form controls, missing main/title, and unexpected h1 count. This is **not a substitute for WCAG, Lighthouse or human visual review**.
 
+## Automated CI coverage
+
+On every push to `main` and on pull requests, GitHub Actions validates the skill's manifests and Python unit tests on **Windows and Linux**, checks JavaScript syntax, then runs the local smoke fixture in **Chromium**. Four viewport screenshots plus `report.json` are uploaded as CI artifacts for 14 days. This checks browser execution and the fixture—not the behavior of Codex or Claude Code, the accessibility of arbitrary sites, or the artistic quality of generated designs.
+
 ## Development and validation
 
 ```bash
@@ -119,6 +123,7 @@ CI validates paths, metadata, referenced files, manifests and basic portability,
 - [ ] Verified release tag with compatibility evidence
 - [ ] Fresh Codex installation and sample-site integration test
 - [ ] Fresh Claude Code installation and plugin marketplace test
+- [x] CI browser smoke and four screenshot artifacts for the local fixture
 - [ ] Automated screenshot comparison baselines and accessibility test recipe
 - [ ] Example websites + real before/after evidence
 
