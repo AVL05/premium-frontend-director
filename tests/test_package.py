@@ -27,6 +27,17 @@ class PackageTests(unittest.TestCase):
     def test_no_required_external_skill(self):
         deps = (ROOT / "skills/premium-frontend-director/references/dependencies.md").read_text()
         self.assertIn("self-contained", deps)
+    def test_optional_design_companions_are_coordinated(self):
+        skill = (ROOT / "skills/premium-frontend-director/SKILL.md").read_text()
+        dependencies = (ROOT / "skills/premium-frontend-director/references/dependencies.md").read_text()
+        readme = (ROOT / "README.md").read_text()
+        for name in ("design-taste-frontend", "impeccable"):
+            self.assertIn(name, skill)
+            self.assertIn(name, dependencies)
+            self.assertIn(name, readme)
+        self.assertIn("never require either", skill)
+        self.assertIn("Do not automatically install", dependencies)
+
     def test_missing_manifest_fails_cleanly(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
