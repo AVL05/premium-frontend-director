@@ -65,15 +65,63 @@ Use $premium-frontend-director to redesign this interface. Audit the current rep
 
 For Claude Code, request the skill by name if your environment doesn't support `$` invocation.
 
-## Optional companion skills
+## Recommended design stack (optional, for stronger creative results)
 
-The skill works **without** any of these. You may install them separately from their original authors after reviewing their licenses, current availability and instructions:
+**Premium Frontend Director is self-contained and does not require additional design skills.** For more ambitious art direction and a stronger finishing pass, the **recommended premium setup** is:
 
-- OpenAI: `frontend-skill` (current catalog: `openai/plugins`)
-- Anthropic: `frontend-design`
-- Community: `design-taste-frontend`, `impeccable`, `image-to-code`
+| Tool | Purpose | Recommendation |
+| --- | --- | --- |
+| **Premium Frontend Director** | Owns the brief, three concepts, decisions, implementation, validation and handoff | **Required** |
+| **[Taste Skill](https://www.tasteskill.dev/docs)** (`design-taste-frontend`) | Provides stronger aesthetic heuristics, typography, layout, motion and anti-template guidance | **Highly recommended** |
+| **[Impeccable](https://impeccable.style/)** (`impeccable`) | Provides design critique, visual audits and final polish; its native installer may offer agent-specific checks | **Highly recommended** |
+| [OpenAI `frontend-skill`](https://developers.openai.com/blog/designing-delightful-frontends-with-gpt-5.4) | Optional composition and restrained motion guidance in Codex | Optional alternative |
+| [Anthropic `frontend-design`](https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design) | Optional expressive design guidance in Claude Code | Optional alternative |
+| [`image-to-code`](https://www.tasteskill.dev/docs) | Helps translate an approved visual reference into frontend code | Task-specific |
 
-Never redistribute their code inside this repository without explicit license compliance.
+**You do not need to install all of these.** We recommend **Premium Frontend Director + Taste Skill + Impeccable** for a high-taste workflow. If another design-focused skill is already active, use its strengths selectively instead of stacking conflicting design directives. The default Taste Skill v2 is currently described by its author as **experimental**; review updates before rolling it out widely.
+
+### Install the recommended stack (Codex or Claude Code)
+
+Install the director first, then optional companions in the project directory. These commands use the upstream publishers' installation methods (review third-party code before running):
+
+```bash
+# 1. Main coordinator
+npx skills add https://github.com/AVL05/premium-frontend-director --skill premium-frontend-director
+
+# 2. Optional: additional creative direction (Taste Skill v2, experimental)
+npx skills add https://github.com/Leonxlnx/taste-skill --skill design-taste-frontend
+
+# 3. Optional: design critique and polish (choose target agent in installer)
+npx impeccable install
+```
+
+For Impeccable, `npx skills add pbakaus/impeccable` also installs a portable shared skill, but **`npx impeccable install` is recommended** when you want its native agent integration and optional automatic design checks. Claude Code users can alternatively use `/plugin marketplace add pbakaus/impeccable` and then install Impeccable from the plugin browser. The exact available options depend on the current agent version.
+
+To verify what was installed, open a new agent session and inspect its registered skills. **Do not assume success merely because an installer exited without errors.**
+
+### How they cooperate
+
+1. **Director — discover:** read the user brief and project conventions; detect *registered* companion skills, not just file names.
+2. **Taste Skill — concept phase:** if installed, use it for *one* creative direction pass and select a coherent visual thesis. Director retains final authority over the project brief.
+3. **Director — implementation:** create `design.md`, implement in the existing stack and protect user-facing behavior. Do not blindly merge incompatible instructions from multiple design skills.
+4. **Impeccable — critique/polish phase:** if installed, request its critique/audit/polish capabilities to identify concrete improvements. Keep accepted changes within the approved design system.
+5. **Director — browser sign-off:** review actual rendering with Playwright or equivalent, run tests and report PASS / FAIL / NOT RUN. Neither Taste nor Impeccable replaces independent verification.
+
+If any companion skill is missing, **continue using the director's built-in references** and mark the integration as *not available*, rather than failing the design task. Never auto-install or execute a third-party plugin without authorization, and never silently override project instructions.
+
+### Example prompt for the recommended stack
+
+```text
+Use premium-frontend-director as the lead skill. If design-taste-frontend is installed,
+use it in the creative direction phase to produce distinctive editorial layouts,
+strong typography and an intentional motion language. Implement the selected design
+without changing the existing framework. If impeccable is installed, use its design
+critique and polish guidance for a final refinement pass. Validate the real rendered
+frontend in the browser, preserve accessibility and performance, and report real
+evidence with PASS / FAIL / NOT RUN gates. Do not claim missing skills were used.
+```
+
+The companion skills are independently maintained and not redistributed by this repository. Check their licenses, behavior, requirements and installation instructions upstream.
 
 ## Visual audit helper
 
