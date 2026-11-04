@@ -26,7 +26,7 @@ class PackageTests(unittest.TestCase):
         self.assertIn("Playwright", body)
     def test_no_required_external_skill(self):
         deps = (ROOT / "skills/premium-frontend-director/references/dependencies.md").read_text()
-        self.assertIn("self-contained", deps)
+        self.assertIn("no companion skills", deps)
     def test_optional_design_companions_are_coordinated(self):
         skill = (ROOT / "skills/premium-frontend-director/SKILL.md").read_text()
         dependencies = (ROOT / "skills/premium-frontend-director/references/dependencies.md").read_text()
