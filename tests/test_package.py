@@ -90,6 +90,24 @@ class PackageTests(unittest.TestCase):
         self.assertIn("prototype", modes.lower())
         self.assertIn("Core requires zero companion skills", skill)
 
+    def test_conditional_specialists_not_required(self):
+        root = ROOT / "skills/premium-frontend-director"
+        skill = (root / "SKILL.md").read_text(encoding="utf-8")
+        deps = (root / "references/dependencies.md").read_text(encoding="utf-8")
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        en = (ROOT / "docs/companion-profiles.md").read_text(encoding="utf-8")
+        es = (ROOT / "docs/GUIA-ES.md").read_text(encoding="utf-8")
+        for slug in ("greensock/gsap-skills", "addyosmani/web-quality-skills", "CloudAI-X/threejs-skills"):
+            for document in (deps, readme, en, es):
+                self.assertIn(slug, document)
+        self.assertIn("no companion skills", deps)
+        self.assertIn("never automatically installs", readme)
+        self.assertIn("not mandatory", skill)
+        self.assertIn("G11", skill)
+        self.assertIn("Core", deps)
+        self.assertIn("Premium", deps)
+        self.assertIn("Studio", deps)
+
     def test_missing_manifest_fails_cleanly(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
