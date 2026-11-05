@@ -48,22 +48,22 @@ class PackageTests(unittest.TestCase):
         for companion in ("ui-ux-pro-max", "design-taste-frontend", "impeccable", "web-design-guidelines", "vercel-react-best-practices"):
             self.assertIn(companion, guide)
             self.assertIn(companion, deps)
-        self.assertIn("agent-browser install", guide)
-        self.assertIn("Leonxlnx/imagegen-skills", guide)
+        self.assertIn("browser", guide.lower())
+        self.assertIn("No", guide)
         self.assertIn("no companion skills", deps)
 
     def test_quickstart_guides_and_profile_commands(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        spanish = (ROOT / "docs/GUIA-ES.md").read_text(encoding="utf-8")
+        spanish = (ROOT / "docs/getting-started.md").read_text(encoding="utf-8")
         english = (ROOT / "docs/companion-profiles.md").read_text(encoding="utf-8")
         dependencies = (ROOT / "skills/premium-frontend-director/references/dependencies.md").read_text(encoding="utf-8")
         for content in (readme, spanish, english, dependencies):
             for profile in ("Core", "Premium", "Studio"):
                 self.assertIn(profile, content)
-            self.assertIn("vercel-react-best-practices", content)
-        self.assertIn("--ai codex", spanish)
-        self.assertIn("--ai claude", spanish)
-        self.assertIn("npx impeccable install", spanish)
+            self.assertIn("React", content)
+        self.assertIn("-a codex", spanish)
+        self.assertIn("-a claude-code", spanish)
+        self.assertIn("Impeccable", spanish)
         self.assertIn("NOT RUN", spanish)
         self.assertIn("Agent Browser", dependencies)
         self.assertNotIn("../../../docs/", dependencies)
@@ -76,7 +76,7 @@ class PackageTests(unittest.TestCase):
         gates = (root / "references/quality-gates.md").read_text(encoding="utf-8")
         implementation = (root / "references/implementation.md").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        spanish = (ROOT / "docs/GUIA-ES.md").read_text(encoding="utf-8")
+        spanish = (ROOT / "docs/getting-started.md").read_text(encoding="utf-8")
         for mode in ("Refined", "Expressive", "Immersive"):
             for doc in (skill, modes, readme, spanish):
                 self.assertIn(mode, doc)
@@ -96,17 +96,34 @@ class PackageTests(unittest.TestCase):
         deps = (root / "references/dependencies.md").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         en = (ROOT / "docs/companion-profiles.md").read_text(encoding="utf-8")
-        es = (ROOT / "docs/GUIA-ES.md").read_text(encoding="utf-8")
+        es = (ROOT / "docs/getting-started.md").read_text(encoding="utf-8")
         for slug in ("greensock/gsap-skills", "addyosmani/web-quality-skills", "CloudAI-X/threejs-skills"):
             for document in (deps, readme, en, es):
                 self.assertIn(slug, document)
         self.assertIn("no companion skills", deps)
-        self.assertIn("never automatically installs", readme)
+        self.assertIn("never downloads or executes", readme)
         self.assertIn("not mandatory", skill)
         self.assertIn("G11", skill)
         self.assertIn("Core", deps)
         self.assertIn("Premium", deps)
         self.assertIn("Studio", deps)
+
+    def test_public_docs_are_english_and_navigable(self):
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        quick = (ROOT / "docs/getting-started.md").read_text(encoding="utf-8")
+        profile = (ROOT / "docs/companion-profiles.md").read_text(encoding="utf-8")
+        manual = (ROOT / "docs/manual-testing.md").read_text(encoding="utf-8")
+        self.assertFalse((ROOT / "docs/GUIA-ES.md").exists())
+        for term in ("Core", "Premium", "Studio", "Refined", "Expressive", "Immersive"):
+            self.assertIn(term, readme)
+        self.assertIn("npx skills add AVL05/premium-frontend-director", readme)
+        self.assertIn("docs/getting-started.md", readme)
+        self.assertIn("docs/companion-profiles.md", readme)
+        self.assertIn("skills/premium-frontend-director/SKILL.md", readme)
+        self.assertIn("--skill premium-frontend-director -a codex", quick)
+        self.assertIn("--skill premium-frontend-director -a claude-code", quick)
+        self.assertIn("NOT RUN", manual)
+        self.assertIn("npx impeccable install", profile)
 
     def test_missing_manifest_fails_cleanly(self):
         with tempfile.TemporaryDirectory() as tmp:
