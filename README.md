@@ -69,6 +69,18 @@ npx impeccable install
 npx skills add vercel-labs/agent-skills --skill web-design-guidelines
 ```
 
+### Optional specialists (install per project, only when required)
+
+These **do not** join the five-skill Premium default. Choose a specialist only after the project is inspected and its actual need is established:
+
+| Condition | Optional source | Role |
+| --- | --- | --- |
+| Existing GSAP / ScrollTrigger and demanding motion choreography | [GreenSock GSAP Skills](https://github.com/greensock/gsap-skills) | Animation architecture and timelines |
+| Expensive visuals, Lighthouse / Core Web Vitals investigation | [Addy Osmani Web Quality Skills](https://github.com/addyosmani/web-quality-skills) | Measured performance diagnosis |
+| Genuine Three.js/WebGL spatial experience | [CloudAI-X Three.js Skills](https://github.com/CloudAI-X/threejs-skills) | 3D scene construction and lifecycle |
+
+These repositories may expose **multiple** installable skills; inspect their current `SKILL.md`, licensing and setup before selecting. Installing the whole repository is not required. No other AI art-direction skill is added by default, and the director never automatically installs companions. See [profile guide](docs/companion-profiles.md).
+
 For **Studio**: `npx skills add wshobson/agents --skill design-system-patterns`. For React/Next.js: `npx skills add vercel-labs/agent-skills --skill vercel-react-best-practices`. Optional responsive/accessibility/Tailwind commands and Agent Browser setup are in the [Spanish guide](docs/GUIA-ES.md) and [profile details](docs/companion-profiles.md). Review third-party code and choose project/global scope deliberately.
 
 ## How to use
@@ -97,7 +109,8 @@ Never auto-install other skills or invent verification results.
 3. Builds the experience in the project's **existing framework** and preserves behavior.
 4. Runs a focused critique and refines hierarchy, typography, spacing, states and motion.
 5. Inspects the real interface via a browser at **375, 768, 1440, 1920 px** when tooling is available.
-6. Applies **G11 Visual Ambition** to redesigns, requiring matched before/after evidence of a perceptible change and verified signature interaction for ambitious modes.\n7. Reports quality gates as **PASS / FAIL / NOT RUN** — never fake screenshots or WCAG/Lighthouse results.
+6. Applies **G11 Visual Ambition** to redesigns, requiring matched before/after evidence of a perceptible change and verified signature interaction for ambitious modes.
+7. Reports quality gates as **PASS / FAIL / NOT RUN** — never fake screenshots or WCAG/Lighthouse results.
 
 ## Browser quality check
 
