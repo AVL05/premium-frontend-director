@@ -1,93 +1,41 @@
-# Manual acceptance test — Codex and Claude Code
+# Manual acceptance — real agents and generated websites
 
-This is a **manual verification checklist**. The repository CI validates packaging and a Chromium fixture, but cannot certify agent-specific skill discovery or the quality of a generated website.
+> **This is a testing plan, not a claim of successful cross-agent verification.** GitHub Actions checks the skill package and a local Chromium fixture; it cannot certify creative output in Codex or Claude Code.
 
-## Prerequisites
+## Matrix
 
-- Git, a supported Codex or Claude Code installation, and a disposable frontend test project with a known-good starting commit.
-- For visual validation: Node.js, Playwright, Chromium and a running local frontend. Browser tools may require an initial download.
-- The other design skills mentioned in README are **optional**, never prerequisites.
-- Verify the source URL and inspect scripts before installing third-party code.
+| Test | Codex (Skills CLI) | Claude Code (Skills CLI) | Claude Code (Marketplace) |
+| --- | --- | --- | --- |
+| Installs without editing project configuration | NOT RUN | NOT RUN | NOT RUN |
+| Agent discovers `premium-frontend-director` | NOT RUN | NOT RUN | NOT RUN |
+| Agent loads bundled references | NOT RUN | NOT RUN | NOT RUN |
+| Three distinct visual directions | NOT RUN | NOT RUN | NOT RUN |
+| Project-specific `design.md` | NOT RUN | NOT RUN | NOT RUN |
+| Build and functional tests | NOT RUN | NOT RUN | NOT RUN |
+| Browser screenshots and accessibility checks | NOT RUN | NOT RUN | NOT RUN |
+| G11 (redesign) with matched before/after | NOT RUN | NOT RUN | NOT RUN |
+| Human assessment against original brief | NOT RUN | NOT RUN | NOT RUN |
 
-## A. Codex, native installation
+The user may record separate observed Codex results; do not silently transfer them to other installs or hosts.
 
-In a terminal (PowerShell on Windows also works):
+## Reproducible acceptance sequence
 
-```powershell
-git clone https://github.com/AVL05/premium-frontend-director.git
-New-Item -ItemType Directory -Force "$HOME/.agents/skills" | Out-Null
-Copy-Item -Recurse -Force ".\premium-frontend-director\skills\premium-frontend-director" "$HOME/.agents/skills/"
-```
+1. Use a clean, **disposable** frontend project with a known starting commit and the same assets/brief.
+2. For each agent use only **one** distribution route. Follow [Getting started](getting-started.md), recording OS, agent version, Node and CLI versions, install command, source scope and discovery evidence.
+3. Prompt: `Use $premium-frontend-director. Profile: Core. Ambition: Expressive. Preserve navigation and content. Propose three distinct concepts; implement one; produce design.md; capture matching viewport screenshots; report G11 and quality gates.`
+4. Record the actual tool and skill invocation evidence. Browser tools absent means screenshots/interaction QA are NOT RUN.
+5. Run build/test/lint for the target project. Capture commands, logs and failures.
+6. Repeat with optional Premium companions in a separate clean environment only if comparing their impact. A different result does not automatically prove causation.
+7. For Immersive, build the first-viewport **working prototype** and confirm a real signature interaction **before** expanding the entire redesign. Compare **same** route, state and viewport at 375/768/1440/1920 px.
+8. Ask a human to review whether the outcome matches the requested visual transformation, content and interaction. Do not invent a 10/10 design score or monetary value.
+9. Attach screenshots, short browser recording/frames when available, findings, actual CLI output and unrun gates to [release issue #3](https://github.com/AVL05/premium-frontend-director/issues/3).
 
-Launch Codex in the **disposable frontend project**, not in this skill repository. Confirm that `premium-frontend-director` is listed as available. Test explicit invocation:
+## What a passing CI proves
 
-```text
-Use $premium-frontend-director. Audit this sample frontend, propose three art directions, pick a coherent option, create design.md, implement it, and run visual/browser quality gates with real evidence.
-```
+- One canonical `SKILL.md`, required bundled references and Claude plugin manifests exist.
+- Standard-library Python validation and regression tests pass in Windows and Linux runners.
+- A reproducible local HTML fixture renders in Chromium and produces screenshot/report artifacts.
 
-## B. Claude Code, native installation
+**What it does not prove:** automatic agent discovery on every machine; external companion installation; cross-agent compatibility; subjective design quality; performance or WCAG certification.
 
-In a fresh PowerShell working directory after cloning the repo:
-
-```powershell
-New-Item -ItemType Directory -Force "$HOME/.claude/skills" | Out-Null
-Copy-Item -Recurse -Force ".\premium-frontend-director\skills\premium-frontend-director" "$HOME/.claude/skills/"
-```
-
-Open Claude Code in the sample frontend and request `premium-frontend-director` by name. Verify the skill loaded its references and produced `design.md`.
-
-## C. Claude Code marketplace (separate clean setup)
-
-Inside Claude Code:
-
-```text
-/plugin marketplace add AVL05/premium-frontend-director
-/plugin install premium-frontend-director@premium-frontend-director-marketplace
-```
-
-Confirm the plugin is enabled and can be invoked without a second manual skill copy. If not, record the exact command output and Claude Code version.
-
-## D. Optional portable installer
-
-Inspect the current CLI instructions with `npx skills --help`, then test:
-
-```bash
-npx skills add https://github.com/AVL05/premium-frontend-director --skill premium-frontend-director
-```
-
-Select Codex or Claude Code when prompted. Confirm which directory was written and whether the host discovers the skill. Do not assume a successful installer exit implies successful agent loading.
-
-## E. Shared test brief and evaluation
-
-Use **the same test frontend and brief** in each agent:
-
-> Redesign this sample creative-studio homepage as a distinctive editorial brand. Preserve navigation and semantics, produce three different creative concepts, document the chosen design system, implement a responsive result, and inspect actual rendering at 375, 768, 1440 and 1920 px. Respect reduced motion. Report real PASS/FAIL/NOT RUN gates with screenshot paths.
-
-Record:
-
-| Check | Codex native | Claude native | Claude plugin | npx installer |
-| --- | --- | --- | --- | --- |
-| Skill discovered | NOT RUN | NOT RUN | NOT RUN | NOT RUN |
-| References loaded | NOT RUN | NOT RUN | NOT RUN | NOT RUN |
-| 3 distinct directions | NOT RUN | NOT RUN | NOT RUN | NOT RUN |
-| design.md created | NOT RUN | NOT RUN | NOT RUN | NOT RUN |
-| Build/tests pass | NOT RUN | NOT RUN | NOT RUN | NOT RUN |
-| Real viewport screenshots | NOT RUN | NOT RUN | NOT RUN | NOT RUN |
-| Human visual review | NOT RUN | NOT RUN | NOT RUN | NOT RUN |
-
-Attach OS, agent version, command transcript, screenshots, build logs, failures and limitations to [the release gate issue](https://github.com/AVL05/premium-frontend-director/issues/3). Only update a cell after observing the actual result. Do not represent an automated scan as WCAG conformance or a subjective design comparison as a formal certification.
-
-## Optional local fixture browser test
-
-The repository CI runs Chromium on `examples/visual-audit-fixture`; consult its README to reproduce that same smoke test. It is **not** a generated-design acceptance test.
-
-## Branch housekeeping after merged PRs
-
-GitHub's web interface: **Code → branches → delete** `fix/release-readiness` and `feat/visual-audit-fixture` after checking both PRs are merged. Keep `main`. Alternatively, with authenticated GitHub CLI:
-
-```bash
-gh api -X DELETE repos/AVL05/premium-frontend-director/git/refs/heads/fix/release-readiness
-gh api -X DELETE repos/AVL05/premium-frontend-director/git/refs/heads/feat/visual-audit-fixture
-```
-
-These commands delete only branch references and preserve commits already squash-merged into `main`.
+See [CI workflow](../.github/workflows/validate.yml), [fixture README](../examples/visual-audit-fixture/README.md) and [compatibility notes](compatibility-testing.md).

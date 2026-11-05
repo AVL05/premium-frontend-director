@@ -1,113 +1,145 @@
-# Profiles and upstream installation (English)
+# Tool profiles and integrations
 
-**One required skill:** Premium Frontend Director. Companion skills are independent, optional and not bundled. Their actual availability must be checked in the agent; a directory or successful install command alone is not proof of invocation.
+The only **required** install is **Premium Frontend Director**. Third-party companions are optional, independently distributed, and subject to their own licenses and install procedures.
 
-## Install matrix — exact list
+**Never treat a companion's mention in a prompt as evidence that it was installed or invoked.** In every run, detect what is actually registered and report USED / NOT AVAILABLE / NOT NEEDED.
 
-| Profile | Install | Conditional requirements |
+## Profiles at a glance
+
+| Profile | Includes | Use case |
 | --- | --- | --- |
-| Core | `premium-frontend-director` | Agent Skills host; browser QA for visual sign-off |
-| Premium | Core + `ui-ux-pro-max`, `design-taste-frontend`, `impeccable`, `web-design-guidelines` | Node 22+ and a Chromium-based browser for Taste; Python 3 for UI UX Pro Max searches |
-| Studio | Premium + `design-system-patterns` | Add `vercel-react-best-practices` **only** on React/Next.js; `responsive-design` or `accessibility-compliance` when needed; `tailwind-design-system` only when available and applicable |
+| **Core** | Director only | Any frontend with zero companion dependencies |
+| **Premium** | Core + UI UX Pro Max + Taste Skill + Impeccable + Web Design Guidelines | Art-directed sites, photography, premium launches |
+| **Studio** | Premium + Design System Patterns and relevant framework-specific guidance | Large applications, SaaS, scalable components |
 
-**Agent Browser** is an optional standalone CLI, not an Agent Skill. Playwright can be used instead; installing either does not guarantee a complete QA run. `image-to-code` is task-specific and lives in [Leonxlnx/imagegen-skills](https://github.com/Leonxlnx/imagegen-skills). Do not install every skill indiscriminately.
+**Refined / Expressive / Immersive are independent creative ambition modes.** You can select any combination, e.g. Core + Immersive or Studio + Refined. The mode determines **what must be demonstrated**, not how many skills to install.
 
-## Core
+## Core — the only required install
+
+From your target project:
 
 ```bash
-npx skills add https://github.com/AVL05/premium-frontend-director --skill premium-frontend-director
+npx skills add AVL05/premium-frontend-director --skill premium-frontend-director
 ```
 
-Or the native Claude Code marketplace:
+For `npx skills`, install Node.js 22.20+ first. Choose your agent and local project scope. See [Getting started](getting-started.md) for direct Codex/Claude targets, alternative Claude marketplace install and verification.
 
-```text
-/plugin marketplace add AVL05/premium-frontend-director
-/plugin install premium-frontend-director@premium-frontend-director-marketplace
-```
+## Premium — four optional companions
 
-## Premium: install Core plus all four optional companions
+These instructions are sourced from each upstream maintainer's public install guidance. Run each in the **target app directory**, not inside the Director repository.
 
-1. **UI UX Pro Max** — visual design intelligence (Python 3 for search scripts). Choose your agent:
+### 1. UI UX Pro Max — research and visual design intelligence
+
+[Upstream project](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) · [Installer documentation](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill#installation)
+
+Use its **own CLI**. For Codex:
 
 ```bash
 npx ui-ux-pro-max-cli init --ai codex
-# OR
+```
+
+For Claude Code, run **instead**:
+
+```bash
 npx ui-ux-pro-max-cli init --ai claude
 ```
 
-Use `npx ui-ux-pro-max-cli init --ai codex --dry-run` to preview a Codex installation. The package installs the `uipro` command if installed globally; its own CLI includes data and scripts.
-
-2. **Taste Skill** — high-taste creative direction (Node 22+, Chrome/Edge/Chromium):
+Preview without writing:
 
 ```bash
-npx skills add https://github.com/Leonxlnx/taste-skill --skill design-taste-frontend
+npx ui-ux-pro-max-cli init --ai codex --dry-run
 ```
 
-3. **Impeccable** — critique and polish:
+Python 3 is needed for its built-in search scripts. The free/basic upstream distribution is sufficient. **Do not** substitute only a generic `SKILL.md` copy if the vendor's data/search assets are required.
+
+### 2. Taste Skill — one primary art-direction voice
+
+[Upstream project](https://github.com/Leonxlnx/taste-skill) · [Install docs](https://www.tasteskill.dev/docs)
+
+```bash
+npx skills add Leonxlnx/taste-skill --skill design-taste-frontend
+```
+
+Use project scope. The Director assigns Taste to the **art-direction phase**, avoiding contradictory creative styles from additional generic design skills.
+
+### 3. Impeccable — critique and refinement
+
+[Upstream project and installer](https://impeccable.style/docs/)
 
 ```bash
 npx impeccable install
 ```
 
-Choose the host and scope in the interactive installer. Its design hook may require explicit approval (Codex: `/hooks`). Manual copies omit its hook.
+Select your agent and **project** scope. Review optional hooks and approve them only if desired. The installer can add host-specific integrations; a generic skills-only install may omit them.
 
-4. **Web Design Guidelines** — UI heuristics:
+### 4. Web Design Guidelines — UX and interface heuristics
+
+[Upstream Vercel Agent Skills](https://github.com/vercel-labs/agent-skills)
 
 ```bash
 npx skills add vercel-labs/agent-skills --skill web-design-guidelines
 ```
 
-## Studio: install Premium and add relevant specialization
+This evaluates code/interaction patterns, **not** actual Lighthouse results or the artistic success of a page.
+
+### Verify Premium
+
+Open a new agent session and ask it to name the five available skills and which it can **actually invoke**. Do not add more generic taste/aesthetic skills by default.
+
+If a companion is missing, use the Director's internal references; the core process remains fully operational.
+
+## Studio — only what your stack requires
+
+Start from Premium, then select relevant entries:
 
 ```bash
-# Design tokens/components for larger apps
+# Design tokens and reusable component architecture
 npx skills add wshobson/agents --skill design-system-patterns
 
-# React / Next.js only
-npx skills add vercel-labs/agent-skills --skill vercel-react-best-practices
+# React/Next.js only — confirm the current advertised skill name upstream
+npx skills add vercel-labs/agent-skills --list
 
-# Add these only when the use case calls for them
+# When responsive layouts need a specialist
 npx skills add wshobson/agents --skill responsive-design
+
+# When a dedicated accessibility specialist is warranted
 npx skills add wshobson/agents --skill accessibility-compliance
+
+# Tailwind-specific component system, only if present
+npx skills add wshobson/agents --skill tailwind-design-system
 ```
 
-Tailwind Design System: confirm exact up-to-date availability and installation upstream before installing; do not treat it as a hard requirement. An optional **standalone** browser CLI is `npm install -g agent-browser` and `agent-browser install`.
+Choose only what matches the project. **Studio is not a "install everything" bundle.**
 
-## Optional conditional specialists (not part of the default five)
+## Task-specific specialists
 
-**Do not install these globally or indiscriminately.** The director detects the real project stack and suggests only a needed specialist. Names inside upstream repositories can change, so inspect the actual offered skills before selecting and installing.
+These do **not** become default members of Core, Premium or Studio.
 
-| Trigger | Source | Installation discovery | Purpose |
+| Trigger | Repository | Installation discovery | Contribution |
 | --- | --- | --- | --- |
-| Existing GSAP, ScrollTrigger and demanding timelines | [GreenSock GSAP Skills](https://github.com/greensock/gsap-skills) | `npx skills add greensock/gsap-skills` (select relevant entry) | Choreography, cleanup, scroll integration |
-| Real Core Web Vitals / Lighthouse investigation | [Addy Osmani Web Quality Skills](https://github.com/addyosmani/web-quality-skills) | `npx skills add addyosmani/web-quality-skills` (select relevant entry) | Performance diagnostics using real measurements |
-| True spatial scene using Three.js/WebGL | [CloudAI-X Three.js Skills](https://github.com/CloudAI-X/threejs-skills) | `npx skills add CloudAI-X/threejs-skills` (select relevant entry) | 3D rendering, device fallbacks and resource lifecycle |
+| Complex GSAP/ScrollTrigger choreography | [GreenSock GSAP Skills](https://github.com/greensock/gsap-skills) | `npx skills add greensock/gsap-skills --list` | Timelines, ScrollTrigger and cleanup |
+| Genuine Three.js/WebGL spatial scene | [Three.js Skills](https://github.com/CloudAI-X/threejs-skills) | `npx skills add CloudAI-X/threejs-skills --list` | 3D scene architecture and fallbacks |
+| Measured Lighthouse/Core Web Vitals diagnosis | [Web Quality Skills](https://github.com/addyosmani/web-quality-skills) | `npx skills add addyosmani/web-quality-skills --list` | Reproducible browser performance investigation |
 
-**Default remains Core = director; Premium = director plus four design/QA companions; Studio = Premium plus relevant design-system/framework guidance.** GSAP/Three.js/Web Quality are **capability-triggered** tools that can be used in any profile when needed. Do not imply that Immersive requires WebGL or that the existence of a Lighthouse skill proves measured performance.
+After inspecting the listed skill names, choose the appropriate one using `--skill <actual-name>`. Do **not** install all skills from an upstream repository by default. No specialist is installed or invoked automatically. Immersive does **not** require a 3D library.
 
-Suggested routing for `Premium + Immersive`: Director defines and prototypes the signature moment → UI UX Pro Max researches → Taste contributes one visual direction → **one relevant motion/3D specialist** assists implementation → Impeccable critiques → Web Design Guidelines checks interface heuristics → Web Quality assists **only if real performance diagnostics are being run** → browser evidence/G11. Never auto-install. Avoid stacking competing art direction skills.
+## Orchestration, precedence and costs
 
-## Responsibility and conflict policy
-
-| Phase | Director owns | Optional contributor |
+| Phase | Owner | Optional collaborator |
 | --- | --- | --- |
-| Research | Project/audience/brief | UI UX Pro Max for searchable palette/type/style catalog |
-| Creative direction | Three concepts + chosen thesis | One primary taste contributor (Taste Skill or one native agent frontend-design skill) |
-| Design system | `design.md`, tokens, states | Design System Patterns (Studio) |
-| Implementation | Existing framework, behavior, accessible states | Vercel React Best Practices only for React |
-| Polish | Fixing actual visual issues | Impeccable |
-| Review | Browser evidence and PASS/FAIL/NOT RUN gates | Web Design Guidelines plus actual Playwright or browser CLI |
+| Brief, scope, ambition and G11 | **Director** | None required |
+| Research | Director | UI UX Pro Max |
+| Art direction | Director | Taste Skill (one primary aesthetic voice) |
+| Architecture and components | Director | Design System Patterns / framework skill if actually relevant |
+| Motion or WebGL | Director | GSAP / Three.js specialist **if already relevant and registered** |
+| Critique | Director | Impeccable |
+| UX heuristics | Director | Web Design Guidelines |
+| Runtime quality | Director | Web Quality guidance **only with real measurements**, plus browser tooling |
 
-Do not auto-install, double-apply contradictory visual systems, imply tool execution without logs, or replace human review with fabricated design metrics.
+Prioritize user brief, project rules, rights, accessibility and functional contracts over external stylistic opinions. Skip irrelevant companions. If a tool is absent, never invent its invocation. Reduce context and agent usage by reading only task-specific references, proving the first slice before expanding, and avoiding redundant audits.
 
-## Original projects and requirements
+**No mandatory subscription or external API is built into this skill.** Coding-agent model access, browser installation and third-party services may have their own costs.
 
-- [Director](https://github.com/AVL05/premium-frontend-director)
-- [UI UX Pro Max — native CLI](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)
-- [Taste Skill — Node 22+/browser](https://github.com/Leonxlnx/taste-skill)
-- [Impeccable — installer and optional hook](https://github.com/pbakaus/impeccable)
-- [Vercel Agent Skills](https://github.com/vercel-labs/agent-skills)
-- [wshobson/agents](https://github.com/wshobson/agents)
-- [Agent Browser CLI](https://github.com/vercel-labs/agent-browser)
+## Related guidance
 
-Core/profile install commands are based on upstream documentation checked in November 2026; optional specialist commands are catalog leads requiring review of current repository contents; they are **not** tested against every agent/OS. Refer to each upstream project for future changes.
+[Getting started](getting-started.md) · [Creative ambition modes](../skills/premium-frontend-director/references/ambition-modes.md) · [Manual acceptance testing](manual-testing.md)

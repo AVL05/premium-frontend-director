@@ -1,136 +1,186 @@
+<div align="center">
+
 # Premium Frontend Director
 
-**A cross-agent creative director for distinctive, production-minded frontend design.** Plan the art direction, document the system, implement within the existing stack, critique the real page and report actual browser evidence.
+**Art direction. Frontend engineering. Visual proof.**
 
-[**Guía de instalación en español**](docs/GUIA-ES.md) · [Detailed profile guide (English)](docs/companion-profiles.md) · [Manual agent tests](docs/manual-testing.md)
+A portable Agent Skill for designing distinctive websites, refining existing products, and building immersive digital experiences—with an explicit process for implementation, browser review, and honest quality gates.
 
-> **Release status:** Source and CI-validated development version. CI verifies packaging and a Chromium fixture, not agent-specific creative quality. Codex local user-reported tests exist; Claude Code agent integration remains unverified. A skill cannot guarantee design value, bug-free output or WCAG compliance.
+**Works with Codex · Claude Code · Agent Skills-compatible coding agents**
 
-## Install in 60 seconds
+[**Get started**](#quick-start) · [Profiles](#choose-a-tool-profile) · [Examples](#run-your-first-design-task) · [Installation guide](docs/getting-started.md) · [Quality gates](skills/premium-frontend-director/references/quality-gates.md)
 
-Open a terminal in your frontend project and choose **Codex** or **Claude Code** when asked by the installer:
+![License: MIT](https://img.shields.io/badge/license-MIT-222222?style=flat-square)
+![Agent Skill](https://img.shields.io/badge/format-Agent_Skills-323232?style=flat-square)
+![Optional integrations](https://img.shields.io/badge/integrations-optional-465849?style=flat-square)
+[![Validate Skill](https://github.com/AVL05/premium-frontend-director/actions/workflows/validate.yml/badge.svg)](https://github.com/AVL05/premium-frontend-director/actions/workflows/validate.yml)
+
+</div>
+
+---
+
+## Why this skill?
+
+Most design prompts stop at a good-looking mockup. Premium Frontend Director provides an **end-to-end design workflow**: understand the product, propose meaningful creative directions, implement in the existing stack, inspect the rendered result, and report what was *actually* verified.
+
+| **Creative direction** | **Real implementation** | **Evidence-first review** |
+| :--- | :--- | :--- |
+| Brand-appropriate concepts, typography, composition, imagery and motion | Existing framework, reusable components, semantic HTML and accessible interactions | Browser screenshots, functional tests and PASS / FAIL / NOT RUN gates |
+| Three genuinely different directions—not palette swaps | Small vertical slices, with a prototype first for ambitious redesigns | **G11 Visual Ambition** catches cosmetic changes disguised as radical redesigns |
+
+**No required paid product. No companion skill required. No custom project configuration for Core.** Your agent still needs the target project and its normal development tools. Browser automation and optional integrations require their own tooling.
+
+## Quick start
+
+**1.** Open a terminal in the **frontend project you want to work on** (not this repository).
+
+**2.** Install the single self-contained skill:
 
 ```bash
-npx skills add https://github.com/AVL05/premium-frontend-director --skill premium-frontend-director
+npx skills add AVL05/premium-frontend-director --skill premium-frontend-director
 ```
 
-Or use the Claude Code plugin marketplace **instead of installing a second copy**:
+Choose your coding agent and **project** scope when prompted. To explicitly target an agent:
+
+```bash
+# Codex — project scope
+npx skills add AVL05/premium-frontend-director --skill premium-frontend-director -a codex
+
+# Claude Code — project scope
+npx skills add AVL05/premium-frontend-director --skill premium-frontend-director -a claude-code
+```
+
+The installer needs **Node.js 22.20+**. This is a requirement of the installer, not of the skill's instruction files. Do **not** add `-g` unless you intentionally want a global installation. <https://github.com/vercel-labs/skills>
+
+**3.** Restart or open a new agent session, then prompt:
 
 ```text
-/plugin marketplace add AVL05/premium-frontend-director
-/plugin install premium-frontend-director@premium-frontend-director-marketplace
+Use $premium-frontend-director with the Core profile and Expressive ambition.
+Inspect this project, propose three genuinely different visual directions,
+choose one that fits the content, implement it in the existing stack,
+and verify the rendered result. Report PASS / FAIL / NOT RUN gates.
+Do not install anything else without permission.
 ```
 
-Restart the agent and confirm it has discovered the skill. Detailed native paths and Windows PowerShell instructions: [manual testing](docs/manual-testing.md).
+That's all for **Core**. If your agent does not discover the skill, see the [troubleshooting guide](docs/getting-started.md#troubleshooting). For Claude Code you may alternatively use the [native plugin marketplace](docs/getting-started.md#claude-code-plugin-marketplace)—**do not install both copies**.
 
-## Creative ambition — separate from the skill profile
+## Choose a tool profile
 
-**Core / Premium / Studio chooses companion skills. Refined / Expressive / Immersive chooses how boldly to transform the interface.** They are independent.
+A **profile** decides which external tools the agent may consult. The Director always works on its own; optional companions can be added selectively.
 
-| Ambition | Expected result |
-| --- | --- |
-| **Refined** | Elegant, restrained and polished; appropriate for maintenance or established visual systems |
-| **Expressive** | Distinctive composition, original narrative and a visible signature interaction |
-| **Immersive** | Cinematic or spatial experience with a **working first-viewport prototype and signature transition**, visual before/after evidence and accessible fallback |
+| Profile | Install | Best for |
+| :--- | :--- | :--- |
+| **Core** | **Premium Frontend Director only** | Any frontend; fastest setup and smallest skill footprint |
+| **Premium** | Core + **UI UX Pro Max**, **Taste Skill**, **Impeccable**, **Web Design Guidelines** | Portfolios, studios, distinctive brands, high-end launches |
+| **Studio** | Premium + **Design System Patterns**, plus framework-specific tools only when relevant | SaaS, multi-page products, large component systems |
 
-Use **Premium + Immersive** for ambitious photography/experimental sites. Immersive **does not require Three.js**; it requires meaningful visual impact and functioning interaction.
+**Premium is not automatically installed with Core.** Each optional companion is an independent third-party tool; the [profile guide](docs/companion-profiles.md) includes exact installation instructions and prerequisites. Missing companions never prevent Core from running.
 
-For ambitious redesigns, **G11 Visual Ambition** compares the actual before and after at matching viewports, evaluates structural change and requires evidence of the signature interaction. A green build with only changes to colors, font and spacing **fails G11** when the user demanded a radical transformation. The agent must revise the prototype before expanding the redesign to all pages.
+### Choose creative ambition separately
 
-See [Ambition modes](skills/premium-frontend-director/references/ambition-modes.md), [Immersive design](skills/premium-frontend-director/references/immersive-design.md) and [quality gates](skills/premium-frontend-director/references/quality-gates.md).
+| Ambition | Outcome | Proof expected |
+| :--- | :--- | :--- |
+| **Refined** | Precise, restrained design | Coherence, usability and responsive review |
+| **Expressive** | Distinctive visual identity and narrative | Structural design difference and a signature interaction |
+| **Immersive** | Cinematic or spatial experience; 3D only if appropriate | **First-viewport working prototype, signature transition, matching before/after evidence, accessible fallback** |
 
-## Choose your profile
+Use **Premium + Immersive** for an ambitious photography experience; **Studio + Refined** is equally valid for a complex dashboard. **Immersive does not imply mandatory WebGL.**
 
-| Profile | Install these skills | Additional prerequisites |
-| --- | --- | --- |
-| **Core** | **Premium Frontend Director** only | Agent supporting skills; frontend project. Browser testing is optional but necessary to claim visual sign-off. |
-| **Premium** (recommended for high-end sites) | **Core** + **UI UX Pro Max** + **Taste Skill** (`design-taste-frontend`) + **Impeccable** + **Web Design Guidelines** | Node.js 22+, Python 3 (UI UX searches), Chrome/Edge/Chromium (Taste/browser workflows) |
-| **Studio** (larger products) | **Premium** + **Design System Patterns**; add **Vercel React Best Practices** if using React/Next.js, and **Responsive Design**, **Accessibility Compliance**, **Tailwind Design System** only when relevant | Same as Premium, plus the project's own framework/toolchain |
+For a radical redesign, **G11 Visual Ambition** fails when the result is essentially a typography/palette/spacing update, even if lint and build pass. [How G11 works](skills/premium-frontend-director/references/ambition-modes.md).
 
-**Only the Director is mandatory.** Companion skills enhance specific phases; none is auto-installed. Studio is *not* "install everything."
+## Run your first design task
 
-### Premium add-on commands
-
-Run these **after installing Core**, using the vendor's current installer:
-
-```bash
-# UI UX Pro Max — choose ONE for your agent:
-npx ui-ux-pro-max-cli init --ai codex
-# OR
-npx ui-ux-pro-max-cli init --ai claude
-
-# Taste Skill
-npx skills add https://github.com/Leonxlnx/taste-skill --skill design-taste-frontend
-
-# Impeccable — follow the interactive prompts
-npx impeccable install
-
-# Web Design Guidelines
-npx skills add vercel-labs/agent-skills --skill web-design-guidelines
-```
-
-### Optional specialists (install per project, only when required)
-
-These **do not** join the five-skill Premium default. Choose a specialist only after the project is inspected and its actual need is established:
-
-| Condition | Optional source | Role |
-| --- | --- | --- |
-| Existing GSAP / ScrollTrigger and demanding motion choreography | [GreenSock GSAP Skills](https://github.com/greensock/gsap-skills) | Animation architecture and timelines |
-| Expensive visuals, Lighthouse / Core Web Vitals investigation | [Addy Osmani Web Quality Skills](https://github.com/addyosmani/web-quality-skills) | Measured performance diagnosis |
-| Genuine Three.js/WebGL spatial experience | [CloudAI-X Three.js Skills](https://github.com/CloudAI-X/threejs-skills) | 3D scene construction and lifecycle |
-
-These repositories may expose **multiple** installable skills; inspect their current `SKILL.md`, licensing and setup before selecting. Installing the whole repository is not required. No other AI art-direction skill is added by default, and the director never automatically installs companions. See [profile guide](docs/companion-profiles.md).
-
-For **Studio**: `npx skills add wshobson/agents --skill design-system-patterns`. For React/Next.js: `npx skills add vercel-labs/agent-skills --skill vercel-react-best-practices`. Optional responsive/accessibility/Tailwind commands and Agent Browser setup are in the [Spanish guide](docs/GUIA-ES.md) and [profile details](docs/companion-profiles.md). Review third-party code and choose project/global scope deliberately.
-
-## How to use
-
-Open **your frontend application** in Codex or Claude Code, then paste:
+**Existing website — expressive redesign**
 
 ```text
-Use premium-frontend-director with Premium tool profile and a chosen ambition mode (Refined, Expressive or Immersive) on this frontend.
-Inspect the code and actual registered companion skills.
-Propose three experientially distinct directions. For Expressive/Immersive, first prototype and inspect the defining visual moment against before screenshots; only extend after G11 review.
-Create design.md with the design tokens and decisions.
-Use UI UX Pro Max for research, Taste Skill for art direction and Impeccable
-for a final critique only if they are really available.
-Check the rendered app in a browser at mobile, tablet and desktop widths,
-fix visible defects, preserve existing functionality and document
-PASS / FAIL / NOT RUN results with actual evidence.
-Never auto-install other skills or invent verification results.
+Use $premium-frontend-director. Profile: Core. Ambition: Expressive.
+Review the existing project and keep its functional contracts.
+Propose three materially different concepts, document design.md,
+implement the strongest concept and inspect the real browser output.
+Compare before/after at matching viewports and report G11.
+Do not publish or modify unrelated files.
 ```
 
-**Core:** replace `Premium` with `Core`. **Studio:** replace it with `Studio` for complex SaaS/dashboard projects. The Director selects only relevant companions: a single primary taste contributor, framework-specific implementation advice and independent QA.
+**Cinematic experience — Premium + Immersive**
 
-## What the skill does
-
-1. Audits the brief and existing project and proposes **three meaningful art directions**.
-2. Establishes one coherent identity and produces a project-specific **`design.md`**.
-3. Builds the experience in the project's **existing framework** and preserves behavior.
-4. Runs a focused critique and refines hierarchy, typography, spacing, states and motion.
-5. Inspects the real interface via a browser at **375, 768, 1440, 1920 px** when tooling is available.
-6. Applies **G11 Visual Ambition** to redesigns, requiring matched before/after evidence of a perceptible change and verified signature interaction for ambitious modes.
-7. Reports quality gates as **PASS / FAIL / NOT RUN** — never fake screenshots or WCAG/Lighthouse results.
-
-## Browser quality check
-
-The repository contains an optional read-only [Playwright smoke helper](skills/premium-frontend-director/scripts/visual-audit.mjs). Install Playwright in the **target app** when authorized and run it from the app root:
-
-```bash
-npm install --save-dev @playwright/test
-npx playwright install chromium
-node /path/to/skill/scripts/visual-audit.mjs --url http://localhost:3000 --out ./artifacts/visual-audit
+```text
+Use $premium-frontend-director. Profile: Premium. Ambition: Immersive.
+This must be a perceivable structural redesign, not a typography refresh.
+Use my real content. Propose three experiential directions, then build
+ONLY the defining first-viewport prototype and its signature transition.
+Consider spatial layering or WebGL only if justified by the brief.
+Compare real before/after screenshots and observe the interaction.
+Validate mobile, reduced motion, no-WebGL fallback and G11.
+If G11 fails, revise the prototype before expanding the site.
+Report which optional skills actually ran. No automatic installs or deployment.
 ```
 
-The last path is illustrative: replace it with the **actual installed path** to the script. Use existing browser tooling rather than installing duplicates. This checks screenshot, overflow, console/network and elementary semantics; it is **not** a full accessibility, visual regression, interaction or performance audit. [Reproducible fixture](examples/visual-audit-fixture/README.md).
+**Product interface — Studio + Refined**
 
-## CI, maintenance and status
+```text
+Use $premium-frontend-director. Profile: Studio. Ambition: Refined.
+Audit the existing product, reuse its framework, design tokens and data flows.
+Improve hierarchy, forms, responsive layouts, keyboard interaction and states.
+Use only available framework-specific companion skills where useful.
+Validate the relevant routes and report reproducible test results.
+```
 
-- `python scripts/validate.py`
-- `python -m unittest discover -s tests -v`
-- GitHub Actions: package checks on Windows/Linux; Chromium fixture screenshots and report.
-- Cross-agent integration and visual comparisons: **manual acceptance required**. [Testing guide](docs/manual-testing.md) · [Release gate](https://github.com/AVL05/premium-frontend-director/issues/3).
-- Optional third-party skills/tools are external, are **not bundled**, and can change independently. [Upstream URLs, installers and fallback behavior](docs/companion-profiles.md).
-- Contributions welcome: [CONTRIBUTING.md](CONTRIBUTING.md).
+Additional [installation instructions](docs/getting-started.md) · [Profile details and optional specialists](docs/companion-profiles.md) · [Acceptance test checklist](docs/manual-testing.md)
 
-**License:** MIT. No affiliation with OpenAI, Anthropic, Vercel or the authors of companion skills.
+## Optional specialists: only when a project needs them
+
+These **are not** additional default Premium requirements.
+
+| Existing need | Optional guidance | Role |
+| :--- | :--- | :--- |
+| Complex GSAP/ScrollTrigger timelines | [GreenSock GSAP Skills](https://github.com/greensock/gsap-skills) | Motion choreography, lifecycle, teardown |
+| True Three.js/WebGL scene | [CloudAI-X Three.js Skills](https://github.com/CloudAI-X/threejs-skills) | 3D scene implementation and fallbacks |
+| Lighthouse / Core Web Vitals investigation | [Web Quality Skills](https://github.com/addyosmani/web-quality-skills) | Measured performance diagnostics |
+
+Choose only a relevant skill from each upstream repository after reviewing its source and license. **The Director never downloads or executes a third-party companion automatically.** [Details and installation discovery](docs/companion-profiles.md#task-specific-specialists).
+
+## Quality and honest reporting
+
+The Director aims to deliver:
+
+1. A creative brief with three genuine directions.
+2. A project-specific `design.md` with visual decisions, tokens and trade-offs.
+3. A working implementation that preserves the project's real behavior.
+4. Desktop and mobile browser evidence (typically **375 / 768 / 1440 / 1920 px**, when available).
+5. Accessible keyboard states, reduced-motion fallbacks and performance awareness.
+6. **PASS / FAIL / NOT RUN** results, including **G11** for redesigns.
+
+The optional [visual-audit helper](skills/premium-frontend-director/scripts/visual-audit.mjs) captures viewport screenshots and performs basic browser smoke checks. It **does not** certify WCAG, Lighthouse scores, polished aesthetics or complete functional coverage. [Run the example fixture](examples/visual-audit-fixture/README.md).
+
+## Repository layout
+
+```text
+skills/premium-frontend-director/
+├── SKILL.md                   # Single canonical Agent Skill entrypoint
+├── references/
+│   ├── dependencies.md       # Profiles, optional skills and routing
+│   ├── ambition-modes.md     # Refined / Expressive / Immersive and G11
+│   ├── immersive-design.md   # Spatial composition and fallbacks
+│   ├── creative-direction.md
+│   ├── implementation.md
+│   └── quality-gates.md
+├── assets/design-template.md
+└── scripts/visual-audit.mjs
+
+docs/
+├── getting-started.md
+├── companion-profiles.md
+├── manual-testing.md
+└── compatibility-testing.md
+```
+
+## Compatibility, contribution and status
+
+- **Format:** Agent Skills; designed for Codex, Claude Code and compatible agents.
+- **Distribution:** project-local install via Skills CLI, or a separate Claude Code marketplace option.
+- **CI:** validates structure on Linux and Windows and runs a local Chromium fixture. [Latest checks](https://github.com/AVL05/premium-frontend-director/actions/workflows/validate.yml).
+- **Manual acceptance:** real host installations and output-quality evaluation need human testing. Do not confuse passing CI with certified aesthetic quality or cross-host compatibility. [Acceptance matrix](docs/manual-testing.md).
+- **Contributing:** [CONTRIBUTING.md](CONTRIBUTING.md).
+- **License:** [MIT](LICENSE).
+
+**Independent open-source project.** Not affiliated with OpenAI, Anthropic, Vercel or the companion-skill maintainers. External projects remain subject to their own licenses and installation policies.
