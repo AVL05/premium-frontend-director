@@ -150,6 +150,28 @@ agent-browser install
 
 No sustituye automáticamente al script interno `visual-audit.mjs`, que necesita Playwright.
 
+## Especializaciones opcionales — cuándo añadirlas
+
+El conjunto **Premium sigue teniendo cinco skills**. Estas especializaciones no se instalan por defecto y tampoco son requisitos del modo Immersive.
+
+| Si el proyecto necesita... | Repositorio | Aporta |
+| --- | --- | --- |
+| Animaciones complejas con GSAP / ScrollTrigger | [GreenSock GSAP Skills](https://github.com/greensock/gsap-skills) | Timelines, scroll y limpieza de animaciones |
+| Diagnosticar Core Web Vitals o Lighthouse | [Web Quality Skills](https://github.com/addyosmani/web-quality-skills) | Medición y análisis reales del rendimiento |
+| Una escena espacial con Three.js/WebGL | [Three.js Skills](https://github.com/CloudAI-X/threejs-skills) | Escenas 3D, renderizado y fallbacks |
+
+**Solo tras inspeccionar el stack**, puedes consultar las skills disponibles en cada repositorio:
+
+```powershell
+npx skills add greensock/gsap-skills
+npx skills add addyosmani/web-quality-skills
+npx skills add CloudAI-X/threejs-skills
+```
+
+Estos comandos son una **selección interactiva** de un repositorio, no una orden para instalar todo. Elige la skill específica y el ámbito **project/local**. Revisa su `SKILL.md`, dependencias y licencia antes de aceptar. No los ejecutes todos juntos: un proyecto sin WebGL no necesita Three.js Skills.
+
+**Para RAW.VIVES:** si el prototipo usa GSAP y una escena Three.js real, pueden contribuir los especialistas correspondientes. Web Quality se invoca para métricas comprobables, no para declarar el rendimiento óptimo sin mediciones. Playwright o navegador real y G11 siguen siendo obligatorios para validar el impacto artístico.
+
 ## 6. ¿Cómo usarla después de instalar?
 
 Abre **tu proyecto frontend** en Codex o Claude Code (no el repositorio de la skill) y pega uno de estos mensajes. Cambia el perfil a Core, Premium o Studio.
