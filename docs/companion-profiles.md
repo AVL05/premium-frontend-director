@@ -73,6 +73,20 @@ npx skills add wshobson/agents --skill accessibility-compliance
 
 Tailwind Design System: confirm exact up-to-date availability and installation upstream before installing; do not treat it as a hard requirement. An optional **standalone** browser CLI is `npm install -g agent-browser` and `agent-browser install`.
 
+## Optional conditional specialists (not part of the default five)
+
+**Do not install these globally or indiscriminately.** The director detects the real project stack and suggests only a needed specialist. Names inside upstream repositories can change, so inspect the actual offered skills before selecting and installing.
+
+| Trigger | Source | Installation discovery | Purpose |
+| --- | --- | --- | --- |
+| Existing GSAP, ScrollTrigger and demanding timelines | [GreenSock GSAP Skills](https://github.com/greensock/gsap-skills) | `npx skills add greensock/gsap-skills` (select relevant entry) | Choreography, cleanup, scroll integration |
+| Real Core Web Vitals / Lighthouse investigation | [Addy Osmani Web Quality Skills](https://github.com/addyosmani/web-quality-skills) | `npx skills add addyosmani/web-quality-skills` (select relevant entry) | Performance diagnostics using real measurements |
+| True spatial scene using Three.js/WebGL | [CloudAI-X Three.js Skills](https://github.com/CloudAI-X/threejs-skills) | `npx skills add CloudAI-X/threejs-skills` (select relevant entry) | 3D rendering, device fallbacks and resource lifecycle |
+
+**Default remains Core = director; Premium = director plus four design/QA companions; Studio = Premium plus relevant design-system/framework guidance.** GSAP/Three.js/Web Quality are **capability-triggered** tools that can be used in any profile when needed. Do not imply that Immersive requires WebGL or that the existence of a Lighthouse skill proves measured performance.
+
+Suggested routing for `Premium + Immersive`: Director defines and prototypes the signature moment → UI UX Pro Max researches → Taste contributes one visual direction → **one relevant motion/3D specialist** assists implementation → Impeccable critiques → Web Design Guidelines checks interface heuristics → Web Quality assists **only if real performance diagnostics are being run** → browser evidence/G11. Never auto-install. Avoid stacking competing art direction skills.
+
 ## Responsibility and conflict policy
 
 | Phase | Director owns | Optional contributor |
@@ -96,4 +110,4 @@ Do not auto-install, double-apply contradictory visual systems, imply tool execu
 - [wshobson/agents](https://github.com/wshobson/agents)
 - [Agent Browser CLI](https://github.com/vercel-labs/agent-browser)
 
-Install commands are based on upstream documentation checked on 2026-11-04; they are **not** tested against every agent/OS. Refer to each upstream project for future changes.
+Core/profile install commands are based on upstream documentation checked in November 2026; optional specialist commands are catalog leads requiring review of current repository contents; they are **not** tested against every agent/OS. Refer to each upstream project for future changes.
