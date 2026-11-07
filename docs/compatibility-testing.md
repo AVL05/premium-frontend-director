@@ -12,17 +12,27 @@ The canonical implementation is `skills/premium-frontend-director/`. No third-pa
 
 **Installation requirements:** the Skills CLI currently needs Node.js 22.20+. The skill's Markdown content does not depend on Node, Python or a paid provider. The optional browser helper and optional companions have separate requirements.
 
+## Current validation evidence (2026-11-07)
+
+**Maintainer-confirmed in real use:** Premium Frontend Director has been used with **Codex and Claude Code** across the developer portfolio, the raw.vives photography site, and The Art of Direction showcase. Projects and the distinction between reported usage and route-specific checks are documented in the [manual acceptance record](manual-testing.md#real-world-usage-reported-by-the-project-owner-2026-11-07).
+
+**Automated validation:** the [2026-11-07 CI run](https://github.com/AVL05/premium-frontend-director/actions/runs/42378205798) for commit `6c3bafd` concluded successfully. It exercises package validation on Windows and Linux and a Chromium fixture, not proprietary agents.
+
+**Showcase-specific QA:** [the showcase DESIGN.md](https://github.com/AVL05/premium-frontend-director-showcase/blob/main/DESIGN.md) records production build/lint, responsive inspection, installer UI interactions, and motion/WebGL fallback checks. Its outstanding performance and accessibility checks remain outstanding.
+
+**Still unverified with reproducible records:** exact Skills CLI host-install transcripts, fresh-session discovery logs, native marketplace installation, which companions actually ran in each project, controlled cross-agent comparison and independent aesthetic outcomes. Public website existence does not by itself prove these steps.
+
 ## Release gates
 
-- [ ] CI for intended release commit passes on both OS targets and Chromium fixture.
-- [ ] Core is installed and discovered by a fresh Codex session.
-- [ ] Core is installed and discovered by a fresh Claude Code session.
+- [x] Automated Windows/Linux package validation and Chromium fixture passed for commit `6c3bafd` ([run](https://github.com/AVL05/premium-frontend-director/actions/runs/42378205798)); **recheck the actual release commit**.
+- [ ] Codex: maintainer confirms real use; clean installation + fresh-session discovery logs not yet attached.
+- [ ] Claude Code: maintainer confirms real use; clean installation + fresh-session discovery logs not yet attached.
 - [ ] Native Claude marketplace install is independently verified.
-- [ ] Same reference brief implemented and browser-reviewed on real host(s), with screenshot paths.
+- [ ] Real projects are documented for both agents collectively; a **same-brief, per-host** reproducible implementation with recorded screenshots is not attached.
 - [ ] G11 baseline/candidate first-viewport and interaction evidence on an ambitious redesign.
-- [ ] Browser accessibility/routing tests recorded with actual results.
+- [ ] Showcase responsive/interactive checks are documented; full browser accessibility and performance evidence is not yet recorded.
 - [ ] Optional companions validated only if their use is claimed.
-- [ ] Human visual review completed; no unsupported artistic or performance certification.
+- [ ] Project-owner acceptance of real project use is reported; independent visual review against a fixed brief is not attached.
 - [ ] Version/tag/release description reflects *verified* compatibility only.
 
 Use **PASS / FAIL / NOT RUN**, not assumptions. See [manual acceptance matrix](manual-testing.md) and [release issue](https://github.com/AVL05/premium-frontend-director/issues/3).
