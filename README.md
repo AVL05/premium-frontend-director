@@ -40,6 +40,18 @@ Most design prompts stop at a good-looking mockup. Premium Frontend Director pro
 
 **No required paid product. No companion skill required. No custom project configuration for Core.** Your agent still needs the target project and its normal development tools. Browser automation and optional integrations require their own tooling.
 
+## Built with Premium Frontend Director
+
+The maintainer reports using this skill with **Codex and Claude Code** across three real websites, each with a distinct design brief. These are published applications of the workflow, **not** controlled benchmarks, blanket compatibility certification or claims that every project was built with both agents.
+
+| Project | Experience | Links |
+| :--- | :--- | :--- |
+| **ALEVICLOP** | Professional full-stack developer portfolio with editorial frontend design | [Website](https://www.aleviclop.dev/) · [Source](https://github.com/AVL05/Portfolio) |
+| **raw.vives** | Image-led, bilingual photography experience | [Website](https://rawvives.aleviclop.dev/) · [Source](https://github.com/AVL05/alexgallery) |
+| **The Art of Direction** | Cinematic showcase and interactive configuration/installation guide | [Live experience](https://the-art-of-direction.netlify.app/) · [Source](https://github.com/AVL05/premium-frontend-director-showcase) |
+
+**Evidence and limitations:** [real-world usage record](docs/manual-testing.md#real-world-usage-reported-by-the-project-owner-2026-11-07) · [compatibility/release checklist](docs/compatibility-testing.md). The skill's [automated validation](https://github.com/AVL05/premium-frontend-director/actions/runs/42378205798) passed for commit `6c3bafd` on 2026-11-07; individual host installation logs and independent output assessments are not yet archived.
+
 ## Quick start
 
 **Install in your own frontend repository.** No need to clone this repository or deploy the showcase.
@@ -214,7 +226,7 @@ docs/
 - **Format:** Agent Skills; designed for Codex, Claude Code and compatible agents.
 - **Distribution:** project-local install via Skills CLI, or a separate Claude Code marketplace option.
 - **CI:** validates structure on Linux and Windows and runs a local Chromium fixture. [Latest checks](https://github.com/AVL05/premium-frontend-director/actions/workflows/validate.yml).
-- **Manual acceptance:** real host installations and output-quality evaluation need human testing. Do not confuse passing CI with certified aesthetic quality or cross-host compatibility. [Acceptance matrix](docs/manual-testing.md).
+- **Real-world use:** the maintainer confirms projects built using the skill with Codex and Claude Code. [Published examples and evidence levels](docs/manual-testing.md). Clean-install compatibility and independent output-quality evaluation remain separate checks; CI is not an aesthetic certification.
 - **Contributing:** [CONTRIBUTING.md](CONTRIBUTING.md).
 - **License:** [MIT](LICENSE).
 
