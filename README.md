@@ -2,22 +2,32 @@
 
 # Premium Frontend Director
 
-**Art direction. Frontend engineering. Visual proof.**
+### Stop generating generic interfaces. Start directing experiences.
 
-A portable Agent Skill for designing distinctive websites, refining existing products, and building immersive digital experiences—with an explicit process for implementation, browser review, and honest quality gates.
+**Art direction · Frontend engineering · Visual proof**
 
-**Works with Codex · Claude Code · Agent Skills-compatible coding agents**
+An open-source, portable Agent Skill that helps coding agents turn a creative brief into a distinctive, working frontend—with deliberate visual decisions and verifiable quality checks.
 
-[**Get started**](#quick-start) · [Profiles](#choose-a-tool-profile) · [Examples](#run-your-first-design-task) · [Installation guide](docs/getting-started.md) · [Quality gates](skills/premium-frontend-director/references/quality-gates.md)
+**For Codex, Claude Code, and Agent Skills-compatible coding agents.**
 
-![License: MIT](https://img.shields.io/badge/license-MIT-222222?style=flat-square)
+[**Explore the live showcase**](https://the-art-of-direction.netlify.app) · [**Install the skill**](#quick-start) · [Read the documentation](docs/getting-started.md)
+
+[![MIT License](https://img.shields.io/badge/license-MIT-222222?style=flat-square)](LICENSE)
 ![Agent Skill](https://img.shields.io/badge/format-Agent_Skills-323232?style=flat-square)
-![Optional integrations](https://img.shields.io/badge/integrations-optional-465849?style=flat-square)
+![No required companions](https://img.shields.io/badge/companions-optional-465849?style=flat-square)
 [![Validate Skill](https://github.com/AVL05/premium-frontend-director/actions/workflows/validate.yml/badge.svg)](https://github.com/AVL05/premium-frontend-director/actions/workflows/validate.yml)
 
 </div>
 
 ---
+
+> **See the direction in action:** [The Art of Direction](https://the-art-of-direction.netlify.app) is a standalone, cinematic website created to showcase the project's design philosophy. It is **one live experience**, not a before/after gallery or a claim of independently measured outcomes. [Showcase source](https://github.com/AVL05/premium-frontend-director-showcase).
+
+## What is Premium Frontend Director?
+
+Premium Frontend Director is **an Agent Skill, not a template, component library, theme, or hosted design service**. It guides your coding agent through creative discovery, frontend implementation, browser inspection, and a transparent handoff.
+
+It adapts to the project's existing framework and requirements. **Core works on its own**; external design skills and browser tooling are optional. Your agent and project still need their normal runtimes and tools.
 
 ## Why this skill?
 
@@ -31,6 +41,8 @@ Most design prompts stop at a good-looking mockup. Premium Frontend Director pro
 **No required paid product. No companion skill required. No custom project configuration for Core.** Your agent still needs the target project and its normal development tools. Browser automation and optional integrations require their own tooling.
 
 ## Quick start
+
+**Install in your own frontend repository.** No need to clone this repository or deploy the showcase.
 
 **1.** Open a terminal in the **frontend project you want to work on** (not this repository).
 
@@ -62,7 +74,17 @@ and verify the rendered result. Report PASS / FAIL / NOT RUN gates.
 Do not install anything else without permission.
 ```
 
-That's all for **Core**. If your agent does not discover the skill, see the [troubleshooting guide](docs/getting-started.md#troubleshooting). For Claude Code you may alternatively use the [native plugin marketplace](docs/getting-started.md#claude-code-plugin-marketplace)—**do not install both copies**.
+That's all for **Core**. Check installation with `npx skills list` and start a new agent session. If your agent does not discover the skill, see the [troubleshooting guide](docs/getting-started.md#troubleshooting). For Claude Code you may alternatively use the [native plugin marketplace](docs/getting-started.md#claude-code-plugin-marketplace)—**do not install both copies**.
+
+## How it works
+
+1. **Discover:** inspect the existing UI, audience, content, constraints, and codebase.
+2. **Direct:** propose three materially different creative directions, then choose a coherent concept.
+3. **Document:** record the visual thesis, design decisions, motion, and accessibility requirements.
+4. **Build:** implement the approved direction within the existing stack, starting with a focused prototype for ambitious work.
+5. **Verify:** inspect real browser output when tools are available and report quality gates as **PASS / FAIL / NOT RUN**.
+
+The skill does **not** guarantee a specific visual result or run browser tests without browser-capable tooling. It requires evidence rather than invented scores.
 
 ## Choose a tool profile
 
@@ -89,6 +111,8 @@ Use **Premium + Immersive** for an ambitious photography experience; **Studio + 
 For a radical redesign, **G11 Visual Ambition** fails when the result is essentially a typography/palette/spacing update, even if lint and build pass. [How G11 works](skills/premium-frontend-director/references/ambition-modes.md).
 
 ## Run your first design task
+
+Copy a prompt below into your coding agent **after installing the skill**. The examples describe different project goals; they are not separate showcase websites.
 
 **Existing website — expressive redesign**
 
@@ -173,6 +197,17 @@ docs/
 ├── manual-testing.md
 └── compatibility-testing.md
 ```
+
+## Documentation at a glance
+
+| Resource | Contents |
+| --- | --- |
+| [Getting started](docs/getting-started.md) | Installation, discovery, troubleshooting and removal |
+| [Tool profiles](docs/companion-profiles.md) | Optional companion skills and their prerequisites |
+| [Creative ambition](skills/premium-frontend-director/references/ambition-modes.md) | Refined, Expressive, Immersive and G11 |
+| [Quality gates](skills/premium-frontend-director/references/quality-gates.md) | What must be checked and how results are reported |
+| [Manual acceptance](docs/manual-testing.md) | Human verification across coding agents |
+| [Live showcase](https://the-art-of-direction.netlify.app) | The project's single cinematic demonstration |
 
 ## Compatibility, contribution and status
 
