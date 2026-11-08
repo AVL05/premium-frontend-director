@@ -27,6 +27,7 @@ jobs:
       - run: python scripts/validate.py
       - run: python -m unittest discover -s tests -v
       - run: node --check skills/premium-frontend-director/scripts/visual-audit.mjs
+      - run: node --check scripts/test-failing-fixtures.mjs
 
   browser-smoke:
     name: Chromium screenshot smoke
@@ -56,11 +57,15 @@ jobs:
           exit 1
       - name: Check four viewport screenshots and semantics
         run: node skills/premium-frontend-director/scripts/visual-audit.mjs --url http://127.0.0.1:8765 --out artifacts/visual-audit
+      - name: Check deliberately failing fixtures and corrected controls
+        run: node scripts/test-failing-fixtures.mjs
       - name: Upload screenshot/report evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: chromium-smoke-report
-          path: artifacts/visual-audit/
+          path: |
+            artifacts/visual-audit/
+            artifacts/failing-fixtures/
           if-no-files-found: warn
           retention-days: 14

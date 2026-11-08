@@ -175,6 +175,10 @@ These **are not** additional default Premium requirements.
 
 Choose only a relevant skill from each upstream repository after reviewing its source and license. **The Director never downloads or executes a third-party companion automatically.** [Details and installation discovery](docs/companion-profiles.md#task-specific-specialists).
 
+## What the quality gates reject
+
+Three [reproducible negative fixtures](examples/failing-fixtures/README.md) show a cosmetic-only Immersive redesign (**G11**), a mouse-only control (**G4/G6**), and mobile horizontal overflow (**G5**). Automated browser checks verify the specific keyboard/overflow defects and corrected controls; matched G11 screenshots support a **qualitative review**, not automated aesthetic certification.
+
 ## Quality and honest reporting
 
 The Director aims to deliver:
