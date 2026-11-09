@@ -13,7 +13,22 @@ Report each gate using `PASS`, `FAIL`, or `NOT RUN`, with objective evidence. Do
 | G7 Engineering | Existing lint/tests/build with actual results |
 | G8 Performance | Measured load/bundle data when tools permit; otherwise NOT RUN |
 | G9 Assets/content | Asset licenses, no fabricated claims, appropriate alt text |
-| G10 Regression | Existing business flows checked; explicit unknowns |\n| **G11 Visual Ambition** | Matched before/after first view, structural change, proven signature interaction and fit to requested mode; fail merely cosmetic radical redesigns |
+| G10 Regression | Existing business flows checked; explicit unknowns |
+| **G11 Visual Ambition** | Matched before/after first view, structural change, proven signature interaction and fit to requested mode; fail merely cosmetic radical redesigns |
+
+## Concrete rejection examples (bounded quality checks)
+
+These negative examples help reviewers explain **what fails and why**. They are decision criteria, not a mandatory extra workflow or an automatic design-taste classifier.
+
+| Rejected outcome | Gate | Evidence needed |
+| --- | --- | --- |
+| An explicitly **Immersive** redesign only changes palette, font, and spacing while preserving the same layout and offering no working signature moment | **G11 FAIL** | Compare the actual brief, matched before/after browser views, and test the requested interaction. This is a **qualitative judgement**. |
+| An action responds to mouse clicks but cannot be focused or activated with **Tab and Enter** | **G4/G6 FAIL** for the demonstrated keyboard defect | Reproduce keyboard navigation and activation in the real browser; a passing screenshot or mouse test cannot override this failure. |
+| A fixed-width panel causes unintended horizontal page scrolling at a **375px** viewport | **G5 FAIL** for that viewport | Measure `document.documentElement.scrollWidth > window.innerWidth + 1`; fix and retest. |
+
+These failures are **independent**: passing G5 does not make G11 PASS, and keyboard detection does not certify WCAG conformance. Record `NOT RUN` whenever the relevant inspection was not performed. Do not fail a **Refined** redesign for lacking an Immersive scene the user never requested.
+
+The repository includes optional reproducible baseline/broken/fixed examples and a local Playwright regression script at `examples/failing-fixtures/` and `scripts/test-failing-fixtures.mjs`. **Those repository paths are not part of the standalone installed skill**; do not assume they exist in a consumer project or install anything to get them. The criteria above are self-contained.
 
 ## Browser review recipe
 
